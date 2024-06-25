@@ -1,0 +1,7 @@
+/home/ginman/web/myWebServer/build/CMakeFiles/server.dir
+/home/ginman/web/myWebServer/build/CMakeFiles/edit_cache.dir
+/home/ginman/web/myWebServer/build/CMakeFiles/rebuild_cache.dir
+/home/ginman/web/myWebServer/build/Logger/CMakeFiles/logger.dir
+/home/ginman/web/myWebServer/build/Logger/CMakeFiles/test_log.dir
+/home/ginman/web/myWebServer/build/Logger/CMakeFiles/edit_cache.dir
+/home/ginman/web/myWebServer/build/Logger/CMakeFiles/rebuild_cache.dir

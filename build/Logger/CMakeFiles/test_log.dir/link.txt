@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/test_log.dir/test_log.cc.o -o test_log  liblogger.a 
