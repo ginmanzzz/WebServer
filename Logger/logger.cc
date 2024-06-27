@@ -74,5 +74,6 @@ void Logger::async_write_log() {
 	while (log_queue_->pop(single_log) && Log_closed == false) {
 		std::lock_guard<std::mutex> guard(mtx_);
 		ofs_ << single_log;
+		ofs_.flush();
 	}
 }

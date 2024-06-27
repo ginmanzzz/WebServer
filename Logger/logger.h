@@ -33,7 +33,10 @@ private:
 private:
 	Logger() = default; 
 
-	virtual ~Logger() { Log_closed = true; }
+	virtual ~Logger() { Log_closed = true;
+						log_queue_->close();
+						log_queue_->push("");
+						ofs_.flush(); }
 
 	static void LoggerDeleter(Logger* ptr) {
 		delete ptr;
@@ -109,6 +112,7 @@ void Logger::write_log(int level, T&& msg) {
 		}
 	} else {
 		ofs_ << single_log;
+		ofs_.flush();
 	}
 }
 
