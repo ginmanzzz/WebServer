@@ -1,6 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/server.dir/Logger/logger.cc.o"
-  "CMakeFiles/server.dir/Logger/logger.cc.o.d"
   "CMakeFiles/server.dir/webserver.cc.o"
   "CMakeFiles/server.dir/webserver.cc.o.d"
   "server"

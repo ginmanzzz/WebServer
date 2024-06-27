@@ -93,6 +93,7 @@ test_log_EXTERNAL_OBJECTS =
 Logger/test_log: Logger/CMakeFiles/test_log.dir/test_log.cc.o
 Logger/test_log: Logger/CMakeFiles/test_log.dir/build.make
 Logger/test_log: Logger/liblogger.a
+Logger/test_log: /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1
 Logger/test_log: Logger/CMakeFiles/test_log.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_log"
 	cd /home/ginman/web/myWebServer/build/Logger && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_log.dir/link.txt --verbose=$(VERBOSE)

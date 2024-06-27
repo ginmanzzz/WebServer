@@ -143,6 +143,19 @@ logger/fast:
 .PHONY : logger/fast
 
 #=============================================================================
+# Target rules for targets named test_blockqueue
+
+# Build rule for target.
+test_blockqueue: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_blockqueue
+.PHONY : test_blockqueue
+
+# fast build rule for target.
+test_blockqueue/fast:
+	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/build
+.PHONY : test_blockqueue/fast
+
+#=============================================================================
 # Target rules for targets named test_log
 
 # Build rule for target.
@@ -154,30 +167,6 @@ test_log: cmake_check_build_system
 test_log/fast:
 	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_log.dir/build.make Logger/CMakeFiles/test_log.dir/build
 .PHONY : test_log/fast
-
-Logger/logger.o: Logger/logger.cc.o
-.PHONY : Logger/logger.o
-
-# target to build an object file
-Logger/logger.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Logger/logger.cc.o
-.PHONY : Logger/logger.cc.o
-
-Logger/logger.i: Logger/logger.cc.i
-.PHONY : Logger/logger.i
-
-# target to preprocess a source file
-Logger/logger.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Logger/logger.cc.i
-.PHONY : Logger/logger.cc.i
-
-Logger/logger.s: Logger/logger.cc.s
-.PHONY : Logger/logger.s
-
-# target to generate assembly for a file
-Logger/logger.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Logger/logger.cc.s
-.PHONY : Logger/logger.cc.s
 
 webserver.o: webserver.cc.o
 .PHONY : webserver.o
@@ -213,10 +202,8 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... logger"
 	@echo "... server"
+	@echo "... test_blockqueue"
 	@echo "... test_log"
-	@echo "... Logger/logger.o"
-	@echo "... Logger/logger.i"
-	@echo "... Logger/logger.s"
 	@echo "... webserver.o"
 	@echo "... webserver.i"
 	@echo "... webserver.s"

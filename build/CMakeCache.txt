@@ -218,6 +218,21 @@ WebServer_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 WebServer_SOURCE_DIR:STATIC=/home/ginman/web/myWebServer
 
+//The directory containing a CMake configuration file for fmt.
+fmt_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/fmt
+
+//Value Computed by CMake
+logger_BINARY_DIR:STATIC=/home/ginman/web/myWebServer/build/Logger
+
+//Value Computed by CMake
+logger_IS_TOP_LEVEL:STATIC=OFF
+
+//Dependencies for the target
+logger_LIB_DEPENDS:STATIC=general;fmt::fmt;
+
+//Value Computed by CMake
+logger_SOURCE_DIR:STATIC=/home/ginman/web/myWebServer/Logger
+
 
 ########################
 # INTERNAL cache entries

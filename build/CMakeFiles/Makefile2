@@ -81,6 +81,7 @@ clean: Logger/clean
 
 # Recursive "all" directory target.
 Logger/all: Logger/CMakeFiles/logger.dir/all
+Logger/all: Logger/CMakeFiles/test_blockqueue.dir/all
 Logger/all: Logger/CMakeFiles/test_log.dir/all
 .PHONY : Logger/all
 
@@ -90,6 +91,7 @@ Logger/preinstall:
 
 # Recursive "clean" directory target.
 Logger/clean: Logger/CMakeFiles/logger.dir/clean
+Logger/clean: Logger/CMakeFiles/test_blockqueue.dir/clean
 Logger/clean: Logger/CMakeFiles/test_log.dir/clean
 .PHONY : Logger/clean
 
@@ -97,15 +99,15 @@ Logger/clean: Logger/CMakeFiles/test_log.dir/clean
 # Target rules for target CMakeFiles/server.dir
 
 # All Build rule for target.
-CMakeFiles/server.dir/all:
+CMakeFiles/server.dir/all: Logger/CMakeFiles/logger.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=3,4,5 "Built target server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=3,4 "Built target server"
 .PHONY : CMakeFiles/server.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 0
 .PHONY : CMakeFiles/server.dir/rule
@@ -146,13 +148,39 @@ Logger/CMakeFiles/logger.dir/clean:
 .PHONY : Logger/CMakeFiles/logger.dir/clean
 
 #=============================================================================
+# Target rules for target Logger/CMakeFiles/test_blockqueue.dir
+
+# All Build rule for target.
+Logger/CMakeFiles/test_blockqueue.dir/all:
+	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/depend
+	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=5,6 "Built target test_blockqueue"
+.PHONY : Logger/CMakeFiles/test_blockqueue.dir/all
+
+# Build rule for subdir invocation for target.
+Logger/CMakeFiles/test_blockqueue.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Logger/CMakeFiles/test_blockqueue.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 0
+.PHONY : Logger/CMakeFiles/test_blockqueue.dir/rule
+
+# Convenience name for target.
+test_blockqueue: Logger/CMakeFiles/test_blockqueue.dir/rule
+.PHONY : test_blockqueue
+
+# clean rule for target.
+Logger/CMakeFiles/test_blockqueue.dir/clean:
+	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/clean
+.PHONY : Logger/CMakeFiles/test_blockqueue.dir/clean
+
+#=============================================================================
 # Target rules for target Logger/CMakeFiles/test_log.dir
 
 # All Build rule for target.
 Logger/CMakeFiles/test_log.dir/all: Logger/CMakeFiles/logger.dir/all
 	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_log.dir/build.make Logger/CMakeFiles/test_log.dir/depend
 	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_log.dir/build.make Logger/CMakeFiles/test_log.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=6,7 "Built target test_log"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=7,8 "Built target test_log"
 .PHONY : Logger/CMakeFiles/test_log.dir/all
 
 # Build rule for subdir invocation for target.

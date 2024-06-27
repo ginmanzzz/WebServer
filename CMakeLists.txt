@@ -21,20 +21,17 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clan
     )
 endif()
 
+# Find fmt package
+find_package(fmt REQUIRED)
+
 # Add sub directory
 add_subdirectory(Logger)
 
 # Include directories
-include_directories(${PROJECT_SOURCE_DIR}/Logger)
-
-# Source files
-set(SOURCES
-	webserver.cc
-	Logger/logger.cc
-)
+include_directories(Logger)
 
 # Executable file
-add_executable(server ${SOURCES})
+add_executable(server webserver.cc)
 
 # Link subDirectories library
-# target_link_libraries(server logger)
+target_link_libraries(server PRIVATE logger fmt::fmt)

@@ -1,104 +1,131 @@
 # pragma once
 #include <memory>
-#include <mutex>
-#include <thread>
-#include <vector>
-#include <condition_variable>
+#include <string>
 #include <iostream>
+#include <fstream>
+#include <mutex>
+#include <fmt/core.h>
 
-template<typename T>
-class BlockQueue {
-private:
-	size_t max_size_;
-	size_t size_;
-	size_t r_index_;
-	size_t w_index_;
-	std::vector<T> buf_;
-	std::mutex mtx_;
-	std::condition_variable cv_;
-public:
-	BlockQueue(size_t max_size);
-	~BlockQueue() = default;
-	template<typename U>
-	bool push(U&& item);
-	bool pop(T& item);
-	bool pop(T& item, size_t ms_timeout);
-	size_t size() const;
-};
+#include "blockqueue.h"
+enum time_level { FULL, DATE, HOUR, MINUTE, SECOND };
+std::string get_time(int version = FULL);
+
+extern bool Log_closed;
 
 class Logger {
 private:
-	Logger() = default;
-	virtual ~Logger() = default;
+	// file
+	std::string dir_name_;
+	std::string log_name_;
+	std::string today_;
+	std::ofstream ofs_;
+	std::mutex mtx_;
+
+	// line
+	size_t max_lines_;
+	long long line_cnt_;
+
+	// block queue
+	bool is_async_;
+	size_t max_queueSize_;
+	std::unique_ptr<BlockQueue<std::string>> log_queue_;
+
+private:
+	Logger() = default; 
+
+	virtual ~Logger() { Log_closed = true; }
 
 	static void LoggerDeleter(Logger* ptr) {
 		delete ptr;
 	}
 
+	void async_write_log();
 public:
-	using Logger_ptr = std::unique_ptr<Logger, decltype(&LoggerDeleter)>;
+	enum log_level { INFO, WARN, DEBUG, ERROR };
 
+	using Logger_ptr = std::unique_ptr<Logger, decltype(&LoggerDeleter)>;
+public:
 	static Logger_ptr& getInstance() {
 		// In C++11, static object initialization is thread safe
 		static Logger_ptr p(new Logger(), &LoggerDeleter);
 		return p;
 	}
-	static void log() {
-		std::cout << "log" << std::endl;
+
+	void init(const std::string& path, size_t max_lines, size_t max_queue_size);
+
+	template<typename T>
+	void write_log(int level, T&& msg);
+
+	// thread work function should be static
+	static void thread_doLog(Logger* p) {
+		p->async_write_log();
+		p->ofs_.flush();
 	}
+
 };
 
 template<typename T>
-BlockQueue<T>::BlockQueue(size_t max_size):
-	max_size_(max_size),
-	size_(0),
-	r_index_(0),
-	w_index_(0),
-	buf_(max_size) {}
-
-template<typename T>
-template<typename U>
-bool BlockQueue<T>::push(U&& item) {
-	std::unique_lock<std::mutex> lock(mtx_);
-	if (size() >= max_size_) {
-		cv_.notify_all();
-		return false;
+void Logger::write_log(int level, T&& msg) {
+	std::string str_level;
+	switch(level) {
+		case INFO:
+			str_level = "[INFO] ";
+			break;
+		case WARN:
+			str_level = "[WARN] ";
+			break;
+		case DEBUG:
+			str_level = "[DEBUG]";
+			break;
+		case ERROR:
+			str_level = "[ERROR]";
+			break;
+		default:
+			str_level = "[INFO] ";
+			break;
 	}
-	buf_[w_index_] = std::forward<U>(item);
-	size_++;
-	w_index_ = (w_index_ + 1) % max_size_;
-	cv_.notify_all();
-	return true;
-}
-
-template<typename T>
-bool BlockQueue<T>::pop(T& item) {
-	std::unique_lock<std::mutex> lock(mtx_);
-	// cv.wait will block, it use lambda to check size
-	cv_.wait(lock, [this](){ return size() > 0;});
-	item = buf_[r_index_];
-	r_index_ = (r_index_ + 1) % max_size_;
-	size_--;
-	cv_.notify_all();
-	return true;
-}
-
-template<typename T>
-bool BlockQueue<T>::pop(T& item, size_t ms_timeout) {
-	std::unique_lock<std::mutex> lock(mtx_);
-	while (size() == 0) {
-		// cv_.wait_for won't block, but it need to check size manually
-		if (cv_.wait_for(lock, std::chrono::milliseconds(ms_timeout)) == std::cv_status::timeout)
-			return false;
+	std::lock_guard<std::mutex> lock(mtx_);
+	line_cnt_++;
+	if (today_ != get_time(DATE) || line_cnt_ % max_lines_ == 0) {
+		// a new day or reach the limited line number
+		ofs_.flush();
+		ofs_.close();
+		if (today_ != get_time(DATE)) {
+			today_ = log_name_ = get_time(DATE);
+			ofs_ = std::ofstream(fmt::format("{}/{}", dir_name_, log_name_));
+			line_cnt_ = 0;
+		} else {
+			ofs_ = std::ofstream(fmt::format("{}/{}_{}", dir_name_, log_name_, line_cnt_ / max_lines_));
+		}
+		if (!ofs_) {
+			std::cerr << "Logger recreate a file falied" << std::endl;
+			exit(1);
+		}
 	}
-	item = buf_[r_index_];
-	r_index_ = (r_index_ + 1) % max_size_;
-	size_--;
-	cv_.notify_all();
-	return true;
+	std::string single_log = fmt::format("{}: {}   {}\n", str_level, get_time(), msg);
+	if (is_async_ && log_queue_->full() == false) {
+		if (log_queue_->push(single_log) == false) {
+			std::cerr << "Fake pemitted to push" << std::endl;
+		}
+	} else {
+		ofs_ << single_log;
+	}
 }
 
 template<typename T>
-size_t BlockQueue<T>::size() const {
-	return size_;
+void LOG_INFO(T&& msg) {
+	Logger::getInstance()->write_log(Logger::INFO, std::forward<T>(msg));
 }
+template<typename T>
+void LOG_WARN(T&& msg) {
+	Logger::getInstance()->write_log(Logger::WARN, std::forward<T>(msg));
+}
+template<typename T>
+void LOG_DEBUG(T&& msg) {
+	Logger::getInstance()->write_log(Logger::DEBUG, std::forward<T>(msg));
+}
+template<typename T>
+void LOG_ERROR(T&& msg) {
+	Logger::getInstance()->write_log(Logger::ERROR, std::forward<T>(msg));
+}
+

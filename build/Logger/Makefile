@@ -131,6 +131,20 @@ logger/fast:
 .PHONY : logger/fast
 
 # Convenience name for target.
+Logger/CMakeFiles/test_blockqueue.dir/rule:
+	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Logger/CMakeFiles/test_blockqueue.dir/rule
+.PHONY : Logger/CMakeFiles/test_blockqueue.dir/rule
+
+# Convenience name for target.
+test_blockqueue: Logger/CMakeFiles/test_blockqueue.dir/rule
+.PHONY : test_blockqueue
+
+# fast build rule for target.
+test_blockqueue/fast:
+	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/build
+.PHONY : test_blockqueue/fast
+
+# Convenience name for target.
 Logger/CMakeFiles/test_log.dir/rule:
 	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Logger/CMakeFiles/test_log.dir/rule
 .PHONY : Logger/CMakeFiles/test_log.dir/rule
@@ -168,6 +182,30 @@ logger.cc.s:
 	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/logger.dir/build.make Logger/CMakeFiles/logger.dir/logger.cc.s
 .PHONY : logger.cc.s
 
+test_blockqueue.o: test_blockqueue.cc.o
+.PHONY : test_blockqueue.o
+
+# target to build an object file
+test_blockqueue.cc.o:
+	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.o
+.PHONY : test_blockqueue.cc.o
+
+test_blockqueue.i: test_blockqueue.cc.i
+.PHONY : test_blockqueue.i
+
+# target to preprocess a source file
+test_blockqueue.cc.i:
+	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.i
+.PHONY : test_blockqueue.cc.i
+
+test_blockqueue.s: test_blockqueue.cc.s
+.PHONY : test_blockqueue.s
+
+# target to generate assembly for a file
+test_blockqueue.cc.s:
+	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.s
+.PHONY : test_blockqueue.cc.s
+
 test_log.o: test_log.cc.o
 .PHONY : test_log.o
 
@@ -201,10 +239,14 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... logger"
+	@echo "... test_blockqueue"
 	@echo "... test_log"
 	@echo "... logger.o"
 	@echo "... logger.i"
 	@echo "... logger.s"
+	@echo "... test_blockqueue.o"
+	@echo "... test_blockqueue.i"
+	@echo "... test_blockqueue.s"
 	@echo "... test_log.o"
 	@echo "... test_log.i"
 	@echo "... test_log.s"
