@@ -9,14 +9,17 @@ bool Log_closed = false;
 namespace fs = std::filesystem;
 std::string get_time(int version) {
 	auto now = std::chrono::system_clock::now();
-    // 将时间点转换为 time_t 类型
+    auto time_since_epoch = now.time_since_epoch();
+    auto seconds = std::chrono::duration_cast<std::chrono::seconds>(time_since_epoch);
+    auto microseconds = std::chrono::duration_cast<std::chrono::microseconds>(time_since_epoch) - 
+                        std::chrono::duration_cast<std::chrono::microseconds>(seconds);
+    
     std::time_t now_c = std::chrono::system_clock::to_time_t(now);
-    // 将 time_t 类型转换为 tm 结构
     std::tm* now_tm = std::localtime(&now_c);
-	std::string ret;
+    std::string ret;
 	switch(version) {
 		case FULL:
-			ret = fmt::format("{:%Y-%m-%d %H:%M:%S}", *now_tm);
+			ret = fmt::format("{:%Y-%m-%d %H:%M:%S}.{:06}", *now_tm, microseconds.count());
 			break;
 		case DATE:
 			ret = fmt::format("{:%Y-%m-%d}", *now_tm);
@@ -30,6 +33,9 @@ std::string get_time(int version) {
 		case SECOND:
 			ret = fmt::format("{:%S}", *now_tm);
 			break;
+		case MS:
+			ret = fmt::format("{:%Y-%m-%d %H:%M:%S}.{:06}", *now_tm, microseconds.count());
+            break;
 		default:
 			ret = fmt::format("{:%Y-%m-%d %H:%M:%S}", *now_tm);
 			break;
@@ -39,12 +45,15 @@ std::string get_time(int version) {
 
 void Logger::init(const std::string& pathStr, size_t max_lines = 5000, size_t max_queue_size = 800) {
 	fs::path path(pathStr);
-	if (is_regular_file(path)) {
-		dir_name_ = path.parent_path();
-		log_name_ = path.filename();
-	} else if (is_directory(path)) {
+	if (is_directory(path)) {
 		dir_name_ = pathStr;
 		log_name_ = get_time(DATE);
+	} else if (is_regular_file(path)) {
+		dir_name_ = path.parent_path();
+		log_name_ = path.filename();
+	} else if (path.has_parent_path() && path.filename() != "." && path.filename() != "..") {
+		dir_name_ = path.parent_path();
+		log_name_ = path.filename();
 	} else {
 		std::cerr << "Unsupported file type" << std::endl;
 		exit(1);
@@ -63,16 +72,16 @@ void Logger::init(const std::string& pathStr, size_t max_lines = 5000, size_t ma
 	log_queue_ = std::make_unique<BlockQueue<std::string>>(max_queue_size);
 	if (max_queue_size > 0)  {
 		is_async_ = true;
-		std::thread log_thread(thread_doLog, this);
-		log_thread.detach();
+		log_thread = std::thread(thread_doLog, this);
 	}
-
 }
 
 void Logger::async_write_log() {
 	std::string single_log;
-	while (log_queue_->pop(single_log) && Log_closed == false) {
-		std::lock_guard<std::mutex> guard(mtx_);
+	for (;;) {
+		if (Log_closed == true && log_queue_->size() == 0)
+			break;
+		log_queue_->pop(single_log);
 		ofs_ << single_log;
 		ofs_.flush();
 	}

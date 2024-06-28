@@ -33,5 +33,5 @@ include_directories(Logger)
 # Executable file
 add_executable(server webserver.cc)
 
-# Link subDirectories library
+# Link subDirectories libraries
 target_link_libraries(server PRIVATE logger fmt::fmt)

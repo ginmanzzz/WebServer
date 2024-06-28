@@ -7,7 +7,7 @@
 #include <fmt/core.h>
 
 #include "blockqueue.h"
-enum time_level { FULL, DATE, HOUR, MINUTE, SECOND };
+enum time_level { FULL, DATE, HOUR, MINUTE, SECOND, MS };
 std::string get_time(int version = FULL);
 
 extern bool Log_closed;
@@ -30,12 +30,16 @@ private:
 	size_t max_queueSize_;
 	std::unique_ptr<BlockQueue<std::string>> log_queue_;
 
+	std::thread log_thread;
+
 private:
 	Logger() = default; 
 
+	// push("") is to notify all async write thread should go exit, void deadlock
 	virtual ~Logger() { Log_closed = true;
 						log_queue_->close();
 						log_queue_->push("");
+						log_thread.join();
 						ofs_.flush(); }
 
 	static void LoggerDeleter(Logger* ptr) {
@@ -69,6 +73,8 @@ public:
 
 template<typename T>
 void Logger::write_log(int level, T&& msg) {
+	if (Log_closed)
+		return;
 	std::string str_level;
 	switch(level) {
 		case INFO:

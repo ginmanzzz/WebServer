@@ -16,7 +16,6 @@ endif()
 # 设置 Debug 构建的编译器选项
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 
-
 target_include_directories(logger PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Find fmt package
@@ -27,8 +26,5 @@ target_link_libraries(logger PUBLIC fmt::fmt)
 
 # Test
 add_executable(test_blockqueue test_blockqueue.cc)
-add_executable(test_log test_log.cc)
-
-target_link_libraries(test_log PRIVATE logger)
 
 
