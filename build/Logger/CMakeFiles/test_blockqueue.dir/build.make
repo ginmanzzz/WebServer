@@ -73,15 +73,15 @@ Logger/CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.o: Logger/CMakeFiles/te
 Logger/CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.o: ../Logger/test_blockqueue.cc
 Logger/CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.o: Logger/CMakeFiles/test_blockqueue.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object Logger/CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.o"
-	cd /home/ginman/web/myWebServer/build/Logger && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Logger/CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.o -MF CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.o.d -o CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.o -c /home/ginman/web/myWebServer/Logger/test_blockqueue.cc
+	cd /home/ginman/web/myWebServer/build/Logger && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Logger/CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.o -MF CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.o.d -o CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.o -c /home/ginman/web/myWebServer/Logger/test_blockqueue.cc
 
 Logger/CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.i"
-	cd /home/ginman/web/myWebServer/build/Logger && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ginman/web/myWebServer/Logger/test_blockqueue.cc > CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.i
+	cd /home/ginman/web/myWebServer/build/Logger && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ginman/web/myWebServer/Logger/test_blockqueue.cc > CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.i
 
 Logger/CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.s"
-	cd /home/ginman/web/myWebServer/build/Logger && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ginman/web/myWebServer/Logger/test_blockqueue.cc -o CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.s
+	cd /home/ginman/web/myWebServer/build/Logger && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ginman/web/myWebServer/Logger/test_blockqueue.cc -o CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.s
 
 # Object files for target test_blockqueue
 test_blockqueue_OBJECTS = \

@@ -155,19 +155,6 @@ test_blockqueue/fast:
 	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/build
 .PHONY : test_blockqueue/fast
 
-#=============================================================================
-# Target rules for targets named test_log
-
-# Build rule for target.
-test_log: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_log
-.PHONY : test_log
-
-# fast build rule for target.
-test_log/fast:
-	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_log.dir/build.make Logger/CMakeFiles/test_log.dir/build
-.PHONY : test_log/fast
-
 webserver.o: webserver.cc.o
 .PHONY : webserver.o
 
@@ -203,7 +190,6 @@ help:
 	@echo "... logger"
 	@echo "... server"
 	@echo "... test_blockqueue"
-	@echo "... test_log"
 	@echo "... webserver.o"
 	@echo "... webserver.i"
 	@echo "... webserver.s"

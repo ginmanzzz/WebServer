@@ -29,6 +29,7 @@ add_subdirectory(Logger)
 
 # Include directories
 include_directories(Logger)
+include_directories(ThreadPool)
 
 # Executable file
 add_executable(server webserver.cc)

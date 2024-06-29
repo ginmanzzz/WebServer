@@ -82,7 +82,6 @@ clean: Logger/clean
 # Recursive "all" directory target.
 Logger/all: Logger/CMakeFiles/logger.dir/all
 Logger/all: Logger/CMakeFiles/test_blockqueue.dir/all
-Logger/all: Logger/CMakeFiles/test_log.dir/all
 .PHONY : Logger/all
 
 # Recursive "preinstall" directory target.
@@ -92,7 +91,6 @@ Logger/preinstall:
 # Recursive "clean" directory target.
 Logger/clean: Logger/CMakeFiles/logger.dir/clean
 Logger/clean: Logger/CMakeFiles/test_blockqueue.dir/clean
-Logger/clean: Logger/CMakeFiles/test_log.dir/clean
 .PHONY : Logger/clean
 
 #=============================================================================
@@ -172,32 +170,6 @@ test_blockqueue: Logger/CMakeFiles/test_blockqueue.dir/rule
 Logger/CMakeFiles/test_blockqueue.dir/clean:
 	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/clean
 .PHONY : Logger/CMakeFiles/test_blockqueue.dir/clean
-
-#=============================================================================
-# Target rules for target Logger/CMakeFiles/test_log.dir
-
-# All Build rule for target.
-Logger/CMakeFiles/test_log.dir/all: Logger/CMakeFiles/logger.dir/all
-	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_log.dir/build.make Logger/CMakeFiles/test_log.dir/depend
-	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_log.dir/build.make Logger/CMakeFiles/test_log.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=7,8 "Built target test_log"
-.PHONY : Logger/CMakeFiles/test_log.dir/all
-
-# Build rule for subdir invocation for target.
-Logger/CMakeFiles/test_log.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 4
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Logger/CMakeFiles/test_log.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 0
-.PHONY : Logger/CMakeFiles/test_log.dir/rule
-
-# Convenience name for target.
-test_log: Logger/CMakeFiles/test_log.dir/rule
-.PHONY : test_log
-
-# clean rule for target.
-Logger/CMakeFiles/test_log.dir/clean:
-	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_log.dir/build.make Logger/CMakeFiles/test_log.dir/clean
-.PHONY : Logger/CMakeFiles/test_log.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

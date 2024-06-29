@@ -73,15 +73,15 @@ CMakeFiles/server.dir/webserver.cc.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/webserver.cc.o: ../webserver.cc
 CMakeFiles/server.dir/webserver.cc.o: CMakeFiles/server.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/webserver.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/webserver.cc.o -MF CMakeFiles/server.dir/webserver.cc.o.d -o CMakeFiles/server.dir/webserver.cc.o -c /home/ginman/web/myWebServer/webserver.cc
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/server.dir/webserver.cc.o -MF CMakeFiles/server.dir/webserver.cc.o.d -o CMakeFiles/server.dir/webserver.cc.o -c /home/ginman/web/myWebServer/webserver.cc
 
 CMakeFiles/server.dir/webserver.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/webserver.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ginman/web/myWebServer/webserver.cc > CMakeFiles/server.dir/webserver.cc.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ginman/web/myWebServer/webserver.cc > CMakeFiles/server.dir/webserver.cc.i
 
 CMakeFiles/server.dir/webserver.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/webserver.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ginman/web/myWebServer/webserver.cc -o CMakeFiles/server.dir/webserver.cc.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ginman/web/myWebServer/webserver.cc -o CMakeFiles/server.dir/webserver.cc.s
 
 # Object files for target server
 server_OBJECTS = \

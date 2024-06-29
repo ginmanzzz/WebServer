@@ -52,5 +52,4 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/server.dir/DependInfo.cmake"
   "Logger/CMakeFiles/logger.dir/DependInfo.cmake"
   "Logger/CMakeFiles/test_blockqueue.dir/DependInfo.cmake"
-  "Logger/CMakeFiles/test_log.dir/DependInfo.cmake"
   )

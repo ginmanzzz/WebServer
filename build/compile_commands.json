@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/ginman/web/myWebServer/build",
+  "command": "/usr/bin/g++ -DFMT_LOCALE -DFMT_SHARED -I/home/ginman/web/myWebServer/Logger -I/home/ginman/web/myWebServer/ThreadPool -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/server.dir/webserver.cc.o -c /home/ginman/web/myWebServer/webserver.cc",
+  "file": "/home/ginman/web/myWebServer/webserver.cc"
+},
+{
+  "directory": "/home/ginman/web/myWebServer/build/Logger",
+  "command": "/usr/bin/g++ -DFMT_LOCALE -DFMT_SHARED -I/home/ginman/web/myWebServer/Logger -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/logger.dir/logger.cc.o -c /home/ginman/web/myWebServer/Logger/logger.cc",
+  "file": "/home/ginman/web/myWebServer/Logger/logger.cc"
+},
+{
+  "directory": "/home/ginman/web/myWebServer/build/Logger",
+  "command": "/usr/bin/g++   -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.o -c /home/ginman/web/myWebServer/Logger/test_blockqueue.cc",
+  "file": "/home/ginman/web/myWebServer/Logger/test_blockqueue.cc"
+}
+]

@@ -144,20 +144,6 @@ test_blockqueue/fast:
 	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/build
 .PHONY : test_blockqueue/fast
 
-# Convenience name for target.
-Logger/CMakeFiles/test_log.dir/rule:
-	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Logger/CMakeFiles/test_log.dir/rule
-.PHONY : Logger/CMakeFiles/test_log.dir/rule
-
-# Convenience name for target.
-test_log: Logger/CMakeFiles/test_log.dir/rule
-.PHONY : test_log
-
-# fast build rule for target.
-test_log/fast:
-	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_log.dir/build.make Logger/CMakeFiles/test_log.dir/build
-.PHONY : test_log/fast
-
 logger.o: logger.cc.o
 .PHONY : logger.o
 
@@ -206,30 +192,6 @@ test_blockqueue.cc.s:
 	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.s
 .PHONY : test_blockqueue.cc.s
 
-test_log.o: test_log.cc.o
-.PHONY : test_log.o
-
-# target to build an object file
-test_log.cc.o:
-	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_log.dir/build.make Logger/CMakeFiles/test_log.dir/test_log.cc.o
-.PHONY : test_log.cc.o
-
-test_log.i: test_log.cc.i
-.PHONY : test_log.i
-
-# target to preprocess a source file
-test_log.cc.i:
-	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_log.dir/build.make Logger/CMakeFiles/test_log.dir/test_log.cc.i
-.PHONY : test_log.cc.i
-
-test_log.s: test_log.cc.s
-.PHONY : test_log.s
-
-# target to generate assembly for a file
-test_log.cc.s:
-	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_log.dir/build.make Logger/CMakeFiles/test_log.dir/test_log.cc.s
-.PHONY : test_log.cc.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -240,16 +202,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... logger"
 	@echo "... test_blockqueue"
-	@echo "... test_log"
 	@echo "... logger.o"
 	@echo "... logger.i"
 	@echo "... logger.s"
 	@echo "... test_blockqueue.o"
 	@echo "... test_blockqueue.i"
 	@echo "... test_blockqueue.s"
-	@echo "... test_log.o"
-	@echo "... test_log.i"
-	@echo "... test_log.s"
 .PHONY : help
 
 

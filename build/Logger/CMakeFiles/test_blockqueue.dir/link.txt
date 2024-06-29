@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.o -o test_blockqueue 
+/usr/bin/g++ -g CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.o -o test_blockqueue 
