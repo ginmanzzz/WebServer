@@ -1,3 +1,5 @@
+#pragma once
+
 #include <memory>
 #include <thread>
 #include <condition_variable>
@@ -10,11 +12,15 @@ class ConnectionPool;
 class Semaphore {
 private:
     size_t count_;
+	// mutex and condition_variable aren't copiable
     std::mutex mtx_;
     std::condition_variable cv_;
 public:
-    Semaphore(int count = 0) : count_(count) { }
+    Semaphore(size_t count = 0) : count_(count) { }
     ~Semaphore() = default;
+	Semaphore(const Semaphore&) = delete;
+	Semaphore& operator=(const Semaphore&) = delete;
+
 
     void notify() {
         std::unique_lock<std::mutex> lock(mtx_);
@@ -81,7 +87,7 @@ ThreadPool<T>::ThreadPool(std::unique_ptr<ConnectionPool>& connPool, size_t thre
     
     // should wait for sucesses of initializing private members
     // then create worker threads
-    for (int i = 0; i < thread_num; i++) {
+    for (size_t i = 0; i < thread_num; i++) {
         arr_threads_[i] = std::thread(worker, this).detach();
     }
 }
