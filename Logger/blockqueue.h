@@ -57,7 +57,9 @@ template<typename T>
 bool BlockQueue<T>::pop(T& item) {
 	std::unique_lock<std::mutex> lock(mtx_);
 	// cv.wait will block, it use lambda to check size
-	cv_.wait(lock, [this](){ return size() > 0;});
+	cv_.wait(lock, [this](){ return size() > 0 || closed_;});
+	if (closed_)
+		return false;
 	item = buf_[r_index_];
 	r_index_ = (r_index_ + 1) % max_size_;
 	size_--;
@@ -92,5 +94,7 @@ bool BlockQueue<T>::full() const {
 
 template<typename T>
 void BlockQueue<T>::close() {
+	std::unique_lock<std::mutex> lock(mtx_);
 	closed_ = true;
+	cv_.notify_all();
 }

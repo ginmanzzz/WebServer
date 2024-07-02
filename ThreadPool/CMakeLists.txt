@@ -26,6 +26,9 @@ include_directories(${MySQL_INCLUDE_DIR})
 
 # Test
 add_executable(test_threadPool test_threadPool.cc connectionpool.cc)
-target_link_libraries(test_threadPool ${MySQL_LIBRARY_DIR}/${MySQL_LIBRARIES})
+target_link_libraries(test_threadPool PUBLIC ${MySQL_LIBRARY_DIR}/${MySQL_LIBRARIES} logger)
 
 
+# Include directories
+include_directories(Logger)
+include_directories(ThreadPool)

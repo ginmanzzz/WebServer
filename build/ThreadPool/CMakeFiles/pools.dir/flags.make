@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/ginman/web/myWebServer/ThreadPool -I/usr/include/mysql
+CXX_INCLUDES = -I/home/ginman/web/myWebServer/ThreadPool -I/usr/include/mysql -I/home/ginman/web/myWebServer/ThreadPool/Logger -I/home/ginman/web/myWebServer/ThreadPool/ThreadPool
 
 CXX_FLAGS = -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17
 

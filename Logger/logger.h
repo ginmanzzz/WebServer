@@ -38,7 +38,6 @@ private:
 	// push("") is to notify all async write thread should go exit, void deadlock
 	virtual ~Logger() { Log_closed = true;
 						log_queue_->close();
-						log_queue_->push("");
 						log_thread.join();
 						ofs_.flush(); }
 

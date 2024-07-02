@@ -222,7 +222,7 @@ ThreadPool/CMakeFiles/pools.dir/clean:
 # Target rules for target ThreadPool/CMakeFiles/test_threadPool.dir
 
 # All Build rule for target.
-ThreadPool/CMakeFiles/test_threadPool.dir/all:
+ThreadPool/CMakeFiles/test_threadPool.dir/all: Logger/CMakeFiles/logger.dir/all
 	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_threadPool.dir/build.make ThreadPool/CMakeFiles/test_threadPool.dir/depend
 	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_threadPool.dir/build.make ThreadPool/CMakeFiles/test_threadPool.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=9,10,11 "Built target test_threadPool"
@@ -230,7 +230,7 @@ ThreadPool/CMakeFiles/test_threadPool.dir/all:
 
 # Build rule for subdir invocation for target.
 ThreadPool/CMakeFiles/test_threadPool.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ThreadPool/CMakeFiles/test_threadPool.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 0
 .PHONY : ThreadPool/CMakeFiles/test_threadPool.dir/rule

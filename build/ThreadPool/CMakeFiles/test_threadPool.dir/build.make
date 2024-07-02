@@ -109,6 +109,8 @@ ThreadPool/test_threadPool: ThreadPool/CMakeFiles/test_threadPool.dir/test_threa
 ThreadPool/test_threadPool: ThreadPool/CMakeFiles/test_threadPool.dir/connectionpool.cc.o
 ThreadPool/test_threadPool: ThreadPool/CMakeFiles/test_threadPool.dir/build.make
 ThreadPool/test_threadPool: /usr/lib/x86_64-linux-gnu/libmysqlclient.so
+ThreadPool/test_threadPool: Logger/liblogger.a
+ThreadPool/test_threadPool: /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1
 ThreadPool/test_threadPool: ThreadPool/CMakeFiles/test_threadPool.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable test_threadPool"
 	cd /home/ginman/web/myWebServer/build/ThreadPool && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_threadPool.dir/link.txt --verbose=$(VERBOSE)

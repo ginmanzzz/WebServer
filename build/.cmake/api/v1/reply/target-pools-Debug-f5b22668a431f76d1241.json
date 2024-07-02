@@ -52,6 +52,18 @@
 				"file" : 0,
 				"line" : 25,
 				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 33,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 34,
+				"parent" : 0
 			}
 		]
 	},
@@ -112,6 +124,14 @@
 				{
 					"backtrace" : 5,
 					"path" : "/usr/include/mysql"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/home/ginman/web/myWebServer/ThreadPool/Logger"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/ginman/web/myWebServer/ThreadPool/ThreadPool"
 				}
 			],
 			"language" : "CXX",

@@ -36,4 +36,4 @@ include_directories(ThreadPool)
 add_executable(server webserver.cc)
 
 # Link subDirectories libraries
-target_link_libraries(server PRIVATE logger fmt::fmt pools)
+target_link_libraries(server PRIVATE logger pools)
