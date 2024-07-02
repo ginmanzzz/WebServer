@@ -151,6 +151,9 @@
 		{
 			"isExternal" : true,
 			"path" : "/usr/lib/x86_64-linux-gnu/cmake/fmt/fmt-targets.cmake"
+		},
+		{
+			"path" : "ThreadPool/CMakeLists.txt"
 		}
 	],
 	"kind" : "cmakeFiles",

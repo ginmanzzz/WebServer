@@ -9,6 +9,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "../CMakeLists.txt"
   "../Logger/CMakeLists.txt"
+  "../ThreadPool/CMakeLists.txt"
   "CMakeFiles/3.22.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeSystem.cmake"
@@ -45,6 +46,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "Logger/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "ThreadPool/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -52,4 +54,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/server.dir/DependInfo.cmake"
   "Logger/CMakeFiles/logger.dir/DependInfo.cmake"
   "Logger/CMakeFiles/test_blockqueue.dir/DependInfo.cmake"
+  "ThreadPool/CMakeFiles/pools.dir/DependInfo.cmake"
+  "ThreadPool/CMakeFiles/test_threadPool.dir/DependInfo.cmake"
   )

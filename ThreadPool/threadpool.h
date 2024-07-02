@@ -8,32 +8,9 @@
 #include <list>
 #include <vector>
 
-class ConnectionPool;
-class Semaphore {
-private:
-    size_t count_;
-	// mutex and condition_variable aren't copiable
-    std::mutex mtx_;
-    std::condition_variable cv_;
-public:
-    Semaphore(size_t count = 0) : count_(count) { }
-    ~Semaphore() = default;
-	Semaphore(const Semaphore&) = delete;
-	Semaphore& operator=(const Semaphore&) = delete;
+#include "semaphore.h"
+#include "connectionpool.h"
 
-
-    void notify() {
-        std::unique_lock<std::mutex> lock(mtx_);
-        count_++;
-        cv_.notify_one();
-    }
-
-    void wait() {
-        std::unique_lock<std::mutex> lock(mtx_);
-        cv_.wait(lock, [this](){ return count_ > 0; });
-        --count_;
-    }
-};
 
 template<typename T>
 class ThreadPool {
@@ -60,7 +37,9 @@ private:
     bool stop_;
 
     // Database connections pool
-    std::unique_ptr<ConnectionPool>& p_connPool;
+    ConnectionPool::UPtrConnPool& p_connPool;
+
+    std::vector<unsigned> completed_cnt;
 
 private:
     static void worker(void* args);
@@ -68,38 +47,50 @@ private:
     void run();
 
 public:
-    ThreadPool(std::unique_ptr<ConnectionPool>& connPool, size_t thread_num = 8, size_t max_requests = 10000);
-    ~ThreadPool() = default;
+    ThreadPool(ConnectionPool::UPtrConnPool& connPool, size_t thread_num = 8, size_t max_requests = 10000);
+    ~ThreadPool();
 
-    bool append(std::unique_ptr<T>& request);
+    bool append(std::unique_ptr<T>&& request);
+	void terminate();
 };
 
 template<typename T>
-ThreadPool<T>::ThreadPool(std::unique_ptr<ConnectionPool>& connPool, size_t thread_num, size_t max_requests) :
+ThreadPool<T>::ThreadPool(ConnectionPool::UPtrConnPool& connPool, size_t thread_num, size_t max_requests) :
     thread_num_(thread_num),
     max_requests_(max_requests),
     arr_threads_(thread_num),
     queue_stat(0),
     stop_(false),
-    p_connPool(connPool) {
+    p_connPool(connPool),
+    completed_cnt(thread_num, 0) {
     if (thread_num == 0 || max_requests == 0)
         throw std::exception();
     
     // should wait for sucesses of initializing private members
     // then create worker threads
     for (size_t i = 0; i < thread_num; i++) {
-        arr_threads_[i] = std::thread(worker, this).detach();
+        arr_threads_[i] = std::thread(worker, this);
     }
 }
 
 template<typename T>
-bool ThreadPool<T>::append(std::unique_ptr<T>& request) {
+ThreadPool<T>::~ThreadPool() {
+    terminate();
+    for (size_t i = 0; i < thread_num_; i++) {
+        if (arr_threads_[i].joinable()) {
+            std::cout << "Thread<" << arr_threads_[i].get_id() << ">: Completed " << completed_cnt[i] << " requests" << std::endl;
+        }
+        arr_threads_[i].join();
+    }
+}
+template<typename T>
+bool ThreadPool<T>::append(std::unique_ptr<T>&& request) {
     std::unique_lock<std::mutex> lock(mtx_);
 
     if (work_queue_.size() >= max_requests_)
         return false;
 
-    work_queue_.push_back(request);
+    work_queue_.push_back(std::move(request));
     lock.unlock();
     queue_stat.notify();
     return true;
@@ -114,15 +105,22 @@ void ThreadPool<T>::worker(void* args) {
 
 template<typename T>
 void ThreadPool<T>::run() {
+    size_t thread_index = 0;
+    for (; thread_index < thread_num_; thread_index++) {
+        if (arr_threads_[thread_index].get_id() == std::this_thread::get_id())
+            break;
+    }
     while (stop_ == false) {
         // semaphore wait
         queue_stat.wait();
+        if (queue_stat.isStop())
+            break;
 
         std::unique_lock<std::mutex> lock(mtx_);
         if (work_queue_.empty())
             continue;
         
-        std::unique_ptr<T>& request = work_queue_.front();
+        std::unique_ptr<T> request = std::move(work_queue_.front());
         work_queue_.pop_front();
         lock.unlock();
 
@@ -131,9 +129,16 @@ void ThreadPool<T>::run() {
         
         // request->mysql = p_connPool->getConnection();
 
-        // request->process();
+        request->process();
+
+        completed_cnt[thread_index]++;
 
         // p_connPool->releaseConnection(request->mysql);
     }
 }
 
+template<typename T>
+void ThreadPool<T>::terminate() {
+	stop_ = true;
+    queue_stat.stop();
+}

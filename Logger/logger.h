@@ -14,18 +14,18 @@ extern bool Log_closed;
 
 class Logger {
 private:
-	// file
+	// File
 	std::string dir_name_;
 	std::string log_name_;
 	std::string today_;
 	std::ofstream ofs_;
 	std::mutex mtx_;
 
-	// line
+	// Line
 	size_t max_lines_;
 	long long line_cnt_;
 
-	// block queue
+	// Block queue
 	bool is_async_;
 	size_t max_queueSize_;
 	std::unique_ptr<BlockQueue<std::string>> log_queue_;
@@ -42,7 +42,7 @@ private:
 						log_thread.join();
 						ofs_.flush(); }
 
-	static void LoggerDeleter(Logger* ptr) {
+	static void LoggerDeletor(Logger* ptr) {
 		delete ptr;
 	}
 
@@ -50,11 +50,11 @@ private:
 public:
 	enum log_level { INFO, WARN, DEBUG, ERROR };
 
-	using Logger_ptr = std::unique_ptr<Logger, decltype(&LoggerDeleter)>;
+	using Logger_ptr = std::unique_ptr<Logger, decltype(&LoggerDeletor)>;
 public:
 	static Logger_ptr& getInstance() {
 		// In C++11, static object initialization is thread safe
-		static Logger_ptr p(new Logger(), &LoggerDeleter);
+		static Logger_ptr p(new Logger(), &LoggerDeletor);
 		return p;
 	}
 

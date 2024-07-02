@@ -13,5 +13,20 @@
   "directory": "/home/ginman/web/myWebServer/build/Logger",
   "command": "/usr/bin/g++   -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/test_blockqueue.dir/test_blockqueue.cc.o -c /home/ginman/web/myWebServer/Logger/test_blockqueue.cc",
   "file": "/home/ginman/web/myWebServer/Logger/test_blockqueue.cc"
+},
+{
+  "directory": "/home/ginman/web/myWebServer/build/ThreadPool",
+  "command": "/usr/bin/g++  -I/home/ginman/web/myWebServer/ThreadPool -I/usr/include/mysql -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/pools.dir/connectionpool.cc.o -c /home/ginman/web/myWebServer/ThreadPool/connectionpool.cc",
+  "file": "/home/ginman/web/myWebServer/ThreadPool/connectionpool.cc"
+},
+{
+  "directory": "/home/ginman/web/myWebServer/build/ThreadPool",
+  "command": "/usr/bin/g++  -I/usr/include/mysql -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/test_threadPool.dir/test_threadPool.cc.o -c /home/ginman/web/myWebServer/ThreadPool/test_threadPool.cc",
+  "file": "/home/ginman/web/myWebServer/ThreadPool/test_threadPool.cc"
+},
+{
+  "directory": "/home/ginman/web/myWebServer/build/ThreadPool",
+  "command": "/usr/bin/g++  -I/usr/include/mysql -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/test_threadPool.dir/connectionpool.cc.o -c /home/ginman/web/myWebServer/ThreadPool/connectionpool.cc",
+  "file": "/home/ginman/web/myWebServer/ThreadPool/connectionpool.cc"
 }
 ]

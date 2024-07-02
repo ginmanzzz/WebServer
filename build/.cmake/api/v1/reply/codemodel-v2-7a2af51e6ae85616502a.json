@@ -8,7 +8,8 @@
 					"build" : ".",
 					"childIndexes" : 
 					[
-						1
+						1,
+						2
 					],
 					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
@@ -19,7 +20,7 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						1
+						2
 					]
 				},
 				{
@@ -35,7 +36,23 @@
 					"targetIndexes" : 
 					[
 						0,
-						2
+						3
+					]
+				},
+				{
+					"build" : "ThreadPool",
+					"jsonFile" : "directory-ThreadPool-Debug-33b848b92eafcd442a5a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "ThreadPool",
+					"targetIndexes" : 
+					[
+						1,
+						4
 					]
 				}
 			],
@@ -45,7 +62,8 @@
 				{
 					"childIndexes" : 
 					[
-						1
+						1,
+						2
 					],
 					"directoryIndexes" : 
 					[
@@ -54,7 +72,7 @@
 					"name" : "WebServer",
 					"targetIndexes" : 
 					[
-						1
+						2
 					]
 				},
 				{
@@ -67,7 +85,20 @@
 					"targetIndexes" : 
 					[
 						0,
+						3
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
 						2
+					],
+					"name" : "pools",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						4
 					]
 				}
 			],
@@ -81,9 +112,16 @@
 					"projectIndex" : 1
 				},
 				{
+					"directoryIndex" : 2,
+					"id" : "pools::@d5e3d60c4753925707bc",
+					"jsonFile" : "target-pools-Debug-f4171e72f44dea7d97af.json",
+					"name" : "pools",
+					"projectIndex" : 2
+				},
+				{
 					"directoryIndex" : 0,
 					"id" : "server::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-server-Debug-bfce82f541ac6e222a2f.json",
+					"jsonFile" : "target-server-Debug-1e9f9c3e27e01123c56e.json",
 					"name" : "server",
 					"projectIndex" : 0
 				},
@@ -93,6 +131,13 @@
 					"jsonFile" : "target-test_blockqueue-Debug-838c1e16cb42f986c040.json",
 					"name" : "test_blockqueue",
 					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_threadPool::@d5e3d60c4753925707bc",
+					"jsonFile" : "target-test_threadPool-Debug-433c07c8f61cac2b6e66.json",
+					"name" : "test_threadPool",
+					"projectIndex" : 2
 				}
 			]
 		}

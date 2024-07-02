@@ -6,9 +6,9 @@
 #include <string>
 #include <mysql/mysql.h>
 
-#include "threadpool.h"  // Semaphore
+#include "semaphore.h"
 
-
+class Semaphore;
 struct MYSQLDeletor {
 	void operator()(MYSQL* conn) const {
 		if (conn)
@@ -19,10 +19,14 @@ struct MYSQLDeletor {
 class ConnectionPool {
 private:
 	using string = std::string;
+	static void ConnectionPoolDeletor(ConnectionPool* p) {
+		delete p;
+	}
 
 public:
 	using SPtrSQL = std::shared_ptr<MYSQL>;
-	static std::unique_ptr<ConnectionPool>& getInstance();
+	using UPtrConnPool = std::unique_ptr<ConnectionPool, decltype(&ConnectionPoolDeletor)>;
+	static UPtrConnPool& getInstance();
 	void init(string url, string user, string password, string DBName, unsigned port, size_t maxConn, bool close_log);
 	SPtrSQL getConnection();
 	void releaseConnection(SPtrSQL conn);

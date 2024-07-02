@@ -26,6 +26,7 @@ find_package(fmt REQUIRED)
 
 # Add sub directory
 add_subdirectory(Logger)
+add_subdirectory(ThreadPool)
 
 # Include directories
 include_directories(Logger)
@@ -35,4 +36,4 @@ include_directories(ThreadPool)
 add_executable(server webserver.cc)
 
 # Link subDirectories libraries
-target_link_libraries(server PRIVATE logger fmt::fmt)
+target_link_libraries(server PRIVATE logger fmt::fmt pools)

@@ -2,8 +2,8 @@
 
 #include "connectionpool.h"
 
-std::unique_ptr<ConnectionPool>& ConnectionPool:: getInstance() {
-	static std::unique_ptr<ConnectionPool> p = std::unique_ptr<ConnectionPool>(new ConnectionPool);
+ConnectionPool::UPtrConnPool& ConnectionPool:: getInstance() {
+	static UPtrConnPool p = UPtrConnPool(new ConnectionPool, &ConnectionPoolDeletor);
 	return p;
 }
 

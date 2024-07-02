@@ -759,7 +759,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "2"
+			"value" : "3"
 		},
 		{
 			"name" : "CMAKE_OBJCOPY",
@@ -1122,6 +1122,18 @@
 			"value" : "FALSE"
 		},
 		{
+			"name" : "MySQL_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for MySQL."
+				}
+			],
+			"type" : "PATH",
+			"value" : "MySQL_DIR-NOTFOUND"
+		},
+		{
 			"name" : "WebServer_BINARY_DIR",
 			"properties" : 
 			[
@@ -1216,6 +1228,42 @@
 			],
 			"type" : "STATIC",
 			"value" : "/home/ginman/web/myWebServer/Logger"
+		},
+		{
+			"name" : "pools_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/ginman/web/myWebServer/build/ThreadPool"
+		},
+		{
+			"name" : "pools_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "OFF"
+		},
+		{
+			"name" : "pools_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/ginman/web/myWebServer/ThreadPool"
 		}
 	],
 	"kind" : "cache",

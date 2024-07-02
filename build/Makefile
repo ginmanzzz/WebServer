@@ -155,6 +155,32 @@ test_blockqueue/fast:
 	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/build
 .PHONY : test_blockqueue/fast
 
+#=============================================================================
+# Target rules for targets named pools
+
+# Build rule for target.
+pools: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pools
+.PHONY : pools
+
+# fast build rule for target.
+pools/fast:
+	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/pools.dir/build.make ThreadPool/CMakeFiles/pools.dir/build
+.PHONY : pools/fast
+
+#=============================================================================
+# Target rules for targets named test_threadPool
+
+# Build rule for target.
+test_threadPool: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_threadPool
+.PHONY : test_threadPool
+
+# fast build rule for target.
+test_threadPool/fast:
+	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_threadPool.dir/build.make ThreadPool/CMakeFiles/test_threadPool.dir/build
+.PHONY : test_threadPool/fast
+
 webserver.o: webserver.cc.o
 .PHONY : webserver.o
 
@@ -188,8 +214,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... logger"
+	@echo "... pools"
 	@echo "... server"
 	@echo "... test_blockqueue"
+	@echo "... test_threadPool"
 	@echo "... webserver.o"
 	@echo "... webserver.i"
 	@echo "... webserver.s"

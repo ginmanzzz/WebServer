@@ -65,15 +65,18 @@ CMAKE_BINARY_DIR = /home/ginman/web/myWebServer/build
 # The main recursive "all" target.
 all: CMakeFiles/server.dir/all
 all: Logger/all
+all: ThreadPool/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: Logger/preinstall
+preinstall: ThreadPool/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/server.dir/clean
 clean: Logger/clean
+clean: ThreadPool/clean
 .PHONY : clean
 
 #=============================================================================
@@ -94,18 +97,36 @@ Logger/clean: Logger/CMakeFiles/test_blockqueue.dir/clean
 .PHONY : Logger/clean
 
 #=============================================================================
+# Directory level rules for directory ThreadPool
+
+# Recursive "all" directory target.
+ThreadPool/all: ThreadPool/CMakeFiles/pools.dir/all
+ThreadPool/all: ThreadPool/CMakeFiles/test_threadPool.dir/all
+.PHONY : ThreadPool/all
+
+# Recursive "preinstall" directory target.
+ThreadPool/preinstall:
+.PHONY : ThreadPool/preinstall
+
+# Recursive "clean" directory target.
+ThreadPool/clean: ThreadPool/CMakeFiles/pools.dir/clean
+ThreadPool/clean: ThreadPool/CMakeFiles/test_threadPool.dir/clean
+.PHONY : ThreadPool/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/server.dir
 
 # All Build rule for target.
 CMakeFiles/server.dir/all: Logger/CMakeFiles/logger.dir/all
+CMakeFiles/server.dir/all: ThreadPool/CMakeFiles/pools.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=3,4 "Built target server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=5,6 "Built target server"
 .PHONY : CMakeFiles/server.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 0
 .PHONY : CMakeFiles/server.dir/rule
@@ -152,7 +173,7 @@ Logger/CMakeFiles/logger.dir/clean:
 Logger/CMakeFiles/test_blockqueue.dir/all:
 	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/depend
 	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=5,6 "Built target test_blockqueue"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=7,8 "Built target test_blockqueue"
 .PHONY : Logger/CMakeFiles/test_blockqueue.dir/all
 
 # Build rule for subdir invocation for target.
@@ -170,6 +191,58 @@ test_blockqueue: Logger/CMakeFiles/test_blockqueue.dir/rule
 Logger/CMakeFiles/test_blockqueue.dir/clean:
 	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/clean
 .PHONY : Logger/CMakeFiles/test_blockqueue.dir/clean
+
+#=============================================================================
+# Target rules for target ThreadPool/CMakeFiles/pools.dir
+
+# All Build rule for target.
+ThreadPool/CMakeFiles/pools.dir/all:
+	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/pools.dir/build.make ThreadPool/CMakeFiles/pools.dir/depend
+	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/pools.dir/build.make ThreadPool/CMakeFiles/pools.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=3,4 "Built target pools"
+.PHONY : ThreadPool/CMakeFiles/pools.dir/all
+
+# Build rule for subdir invocation for target.
+ThreadPool/CMakeFiles/pools.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ThreadPool/CMakeFiles/pools.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 0
+.PHONY : ThreadPool/CMakeFiles/pools.dir/rule
+
+# Convenience name for target.
+pools: ThreadPool/CMakeFiles/pools.dir/rule
+.PHONY : pools
+
+# clean rule for target.
+ThreadPool/CMakeFiles/pools.dir/clean:
+	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/pools.dir/build.make ThreadPool/CMakeFiles/pools.dir/clean
+.PHONY : ThreadPool/CMakeFiles/pools.dir/clean
+
+#=============================================================================
+# Target rules for target ThreadPool/CMakeFiles/test_threadPool.dir
+
+# All Build rule for target.
+ThreadPool/CMakeFiles/test_threadPool.dir/all:
+	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_threadPool.dir/build.make ThreadPool/CMakeFiles/test_threadPool.dir/depend
+	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_threadPool.dir/build.make ThreadPool/CMakeFiles/test_threadPool.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=9,10,11 "Built target test_threadPool"
+.PHONY : ThreadPool/CMakeFiles/test_threadPool.dir/all
+
+# Build rule for subdir invocation for target.
+ThreadPool/CMakeFiles/test_threadPool.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ThreadPool/CMakeFiles/test_threadPool.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 0
+.PHONY : ThreadPool/CMakeFiles/test_threadPool.dir/rule
+
+# Convenience name for target.
+test_threadPool: ThreadPool/CMakeFiles/test_threadPool.dir/rule
+.PHONY : test_threadPool
+
+# clean rule for target.
+ThreadPool/CMakeFiles/test_threadPool.dir/clean:
+	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_threadPool.dir/build.make ThreadPool/CMakeFiles/test_threadPool.dir/clean
+.PHONY : ThreadPool/CMakeFiles/test_threadPool.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
