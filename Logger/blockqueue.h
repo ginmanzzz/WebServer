@@ -58,7 +58,7 @@ bool BlockQueue<T>::pop(T& item) {
 	std::unique_lock<std::mutex> lock(mtx_);
 	// cv.wait will block, it use lambda to check size
 	cv_.wait(lock, [this](){ return size() > 0 || closed_;});
-	if (closed_)
+	if (closed_ && size_ == 0)
 		return false;
 	item = buf_[r_index_];
 	r_index_ = (r_index_ + 1) % max_size_;

@@ -47,6 +47,7 @@ ConnectionPool::SPtrSQL ConnectionPool::getConnection() {
 		return nullptr;
 	SPtrSQL conn = conn_list.front();
 	conn_list.pop_front();
+	free_connections_--;
 	return conn;
 }
 
@@ -55,6 +56,7 @@ void ConnectionPool::releaseConnection(SPtrSQL conn) {
 		return;
 	std::unique_lock<std::mutex> lock(mtx_);
 	conn_list.push_back(std::move(conn));
+	free_connections_++;
 	reserve_.notify();
 }
 
@@ -68,9 +70,11 @@ void ConnectionPool::clear() {
 	max_connections_ = free_connections_ = 0;
 }
 
-connectionRAII::connectionRAII(std::shared_ptr<MYSQL> conn, std::unique_ptr<ConnectionPool>& connPool) :
+connectionRAII::connectionRAII(ConnectionPool::SPtrSQL& conn,ConnectionPool::UPtrConnPool& connPool) :
 	conn_(conn),
-	connPool_(connPool) { }
+	connPool_(connPool) { 
+		conn_ = ConnectionPool::getInstance()->getConnection();
+	}
 
 connectionRAII::~connectionRAII() {
 	connPool_->releaseConnection(conn_);

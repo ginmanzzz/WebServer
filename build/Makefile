@@ -181,6 +181,19 @@ test_threadPool/fast:
 	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_threadPool.dir/build.make ThreadPool/CMakeFiles/test_threadPool.dir/build
 .PHONY : test_threadPool/fast
 
+#=============================================================================
+# Target rules for targets named test_conn
+
+# Build rule for target.
+test_conn: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_conn
+.PHONY : test_conn
+
+# fast build rule for target.
+test_conn/fast:
+	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_conn.dir/build.make ThreadPool/CMakeFiles/test_conn.dir/build
+.PHONY : test_conn/fast
+
 webserver.o: webserver.cc.o
 .PHONY : webserver.o
 
@@ -217,6 +230,7 @@ help:
 	@echo "... pools"
 	@echo "... server"
 	@echo "... test_blockqueue"
+	@echo "... test_conn"
 	@echo "... test_threadPool"
 	@echo "... webserver.o"
 	@echo "... webserver.i"

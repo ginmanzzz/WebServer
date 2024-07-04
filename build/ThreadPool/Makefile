@@ -144,6 +144,20 @@ test_threadPool/fast:
 	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_threadPool.dir/build.make ThreadPool/CMakeFiles/test_threadPool.dir/build
 .PHONY : test_threadPool/fast
 
+# Convenience name for target.
+ThreadPool/CMakeFiles/test_conn.dir/rule:
+	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ThreadPool/CMakeFiles/test_conn.dir/rule
+.PHONY : ThreadPool/CMakeFiles/test_conn.dir/rule
+
+# Convenience name for target.
+test_conn: ThreadPool/CMakeFiles/test_conn.dir/rule
+.PHONY : test_conn
+
+# fast build rule for target.
+test_conn/fast:
+	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_conn.dir/build.make ThreadPool/CMakeFiles/test_conn.dir/build
+.PHONY : test_conn/fast
+
 connectionpool.o: connectionpool.cc.o
 .PHONY : connectionpool.o
 
@@ -151,6 +165,7 @@ connectionpool.o: connectionpool.cc.o
 connectionpool.cc.o:
 	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/pools.dir/build.make ThreadPool/CMakeFiles/pools.dir/connectionpool.cc.o
 	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_threadPool.dir/build.make ThreadPool/CMakeFiles/test_threadPool.dir/connectionpool.cc.o
+	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_conn.dir/build.make ThreadPool/CMakeFiles/test_conn.dir/connectionpool.cc.o
 .PHONY : connectionpool.cc.o
 
 connectionpool.i: connectionpool.cc.i
@@ -160,6 +175,7 @@ connectionpool.i: connectionpool.cc.i
 connectionpool.cc.i:
 	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/pools.dir/build.make ThreadPool/CMakeFiles/pools.dir/connectionpool.cc.i
 	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_threadPool.dir/build.make ThreadPool/CMakeFiles/test_threadPool.dir/connectionpool.cc.i
+	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_conn.dir/build.make ThreadPool/CMakeFiles/test_conn.dir/connectionpool.cc.i
 .PHONY : connectionpool.cc.i
 
 connectionpool.s: connectionpool.cc.s
@@ -169,7 +185,32 @@ connectionpool.s: connectionpool.cc.s
 connectionpool.cc.s:
 	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/pools.dir/build.make ThreadPool/CMakeFiles/pools.dir/connectionpool.cc.s
 	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_threadPool.dir/build.make ThreadPool/CMakeFiles/test_threadPool.dir/connectionpool.cc.s
+	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_conn.dir/build.make ThreadPool/CMakeFiles/test_conn.dir/connectionpool.cc.s
 .PHONY : connectionpool.cc.s
+
+test_conn.o: test_conn.cc.o
+.PHONY : test_conn.o
+
+# target to build an object file
+test_conn.cc.o:
+	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_conn.dir/build.make ThreadPool/CMakeFiles/test_conn.dir/test_conn.cc.o
+.PHONY : test_conn.cc.o
+
+test_conn.i: test_conn.cc.i
+.PHONY : test_conn.i
+
+# target to preprocess a source file
+test_conn.cc.i:
+	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_conn.dir/build.make ThreadPool/CMakeFiles/test_conn.dir/test_conn.cc.i
+.PHONY : test_conn.cc.i
+
+test_conn.s: test_conn.cc.s
+.PHONY : test_conn.s
+
+# target to generate assembly for a file
+test_conn.cc.s:
+	cd /home/ginman/web/myWebServer/build && $(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_conn.dir/build.make ThreadPool/CMakeFiles/test_conn.dir/test_conn.cc.s
+.PHONY : test_conn.cc.s
 
 test_threadPool.o: test_threadPool.cc.o
 .PHONY : test_threadPool.o
@@ -204,10 +245,14 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... pools"
+	@echo "... test_conn"
 	@echo "... test_threadPool"
 	@echo "... connectionpool.o"
 	@echo "... connectionpool.i"
 	@echo "... connectionpool.s"
+	@echo "... test_conn.o"
+	@echo "... test_conn.i"
+	@echo "... test_conn.s"
 	@echo "... test_threadPool.o"
 	@echo "... test_threadPool.i"
 	@echo "... test_threadPool.s"

@@ -102,6 +102,7 @@ Logger/clean: Logger/CMakeFiles/test_blockqueue.dir/clean
 # Recursive "all" directory target.
 ThreadPool/all: ThreadPool/CMakeFiles/pools.dir/all
 ThreadPool/all: ThreadPool/CMakeFiles/test_threadPool.dir/all
+ThreadPool/all: ThreadPool/CMakeFiles/test_conn.dir/all
 .PHONY : ThreadPool/all
 
 # Recursive "preinstall" directory target.
@@ -111,6 +112,7 @@ ThreadPool/preinstall:
 # Recursive "clean" directory target.
 ThreadPool/clean: ThreadPool/CMakeFiles/pools.dir/clean
 ThreadPool/clean: ThreadPool/CMakeFiles/test_threadPool.dir/clean
+ThreadPool/clean: ThreadPool/CMakeFiles/test_conn.dir/clean
 .PHONY : ThreadPool/clean
 
 #=============================================================================
@@ -225,7 +227,7 @@ ThreadPool/CMakeFiles/pools.dir/clean:
 ThreadPool/CMakeFiles/test_threadPool.dir/all: Logger/CMakeFiles/logger.dir/all
 	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_threadPool.dir/build.make ThreadPool/CMakeFiles/test_threadPool.dir/depend
 	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_threadPool.dir/build.make ThreadPool/CMakeFiles/test_threadPool.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=9,10,11 "Built target test_threadPool"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=12,13,14 "Built target test_threadPool"
 .PHONY : ThreadPool/CMakeFiles/test_threadPool.dir/all
 
 # Build rule for subdir invocation for target.
@@ -243,6 +245,32 @@ test_threadPool: ThreadPool/CMakeFiles/test_threadPool.dir/rule
 ThreadPool/CMakeFiles/test_threadPool.dir/clean:
 	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_threadPool.dir/build.make ThreadPool/CMakeFiles/test_threadPool.dir/clean
 .PHONY : ThreadPool/CMakeFiles/test_threadPool.dir/clean
+
+#=============================================================================
+# Target rules for target ThreadPool/CMakeFiles/test_conn.dir
+
+# All Build rule for target.
+ThreadPool/CMakeFiles/test_conn.dir/all: Logger/CMakeFiles/logger.dir/all
+	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_conn.dir/build.make ThreadPool/CMakeFiles/test_conn.dir/depend
+	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_conn.dir/build.make ThreadPool/CMakeFiles/test_conn.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ginman/web/myWebServer/build/CMakeFiles --progress-num=9,10,11 "Built target test_conn"
+.PHONY : ThreadPool/CMakeFiles/test_conn.dir/all
+
+# Build rule for subdir invocation for target.
+ThreadPool/CMakeFiles/test_conn.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 5
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ThreadPool/CMakeFiles/test_conn.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ginman/web/myWebServer/build/CMakeFiles 0
+.PHONY : ThreadPool/CMakeFiles/test_conn.dir/rule
+
+# Convenience name for target.
+test_conn: ThreadPool/CMakeFiles/test_conn.dir/rule
+.PHONY : test_conn
+
+# clean rule for target.
+ThreadPool/CMakeFiles/test_conn.dir/clean:
+	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_conn.dir/build.make ThreadPool/CMakeFiles/test_conn.dir/clean
+.PHONY : ThreadPool/CMakeFiles/test_conn.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -28,5 +28,15 @@
   "directory": "/home/ginman/web/myWebServer/build/ThreadPool",
   "command": "/usr/bin/g++ -DFMT_LOCALE -DFMT_SHARED -I/usr/include/mysql -I/home/ginman/web/myWebServer/ThreadPool/Logger -I/home/ginman/web/myWebServer/ThreadPool/ThreadPool -I/home/ginman/web/myWebServer/Logger -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/test_threadPool.dir/connectionpool.cc.o -c /home/ginman/web/myWebServer/ThreadPool/connectionpool.cc",
   "file": "/home/ginman/web/myWebServer/ThreadPool/connectionpool.cc"
+},
+{
+  "directory": "/home/ginman/web/myWebServer/build/ThreadPool",
+  "command": "/usr/bin/g++ -DFMT_LOCALE -DFMT_SHARED -I/usr/include/mysql -I/home/ginman/web/myWebServer/ThreadPool/Logger -I/home/ginman/web/myWebServer/ThreadPool/ThreadPool -I/home/ginman/web/myWebServer/Logger -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/test_conn.dir/test_conn.cc.o -c /home/ginman/web/myWebServer/ThreadPool/test_conn.cc",
+  "file": "/home/ginman/web/myWebServer/ThreadPool/test_conn.cc"
+},
+{
+  "directory": "/home/ginman/web/myWebServer/build/ThreadPool",
+  "command": "/usr/bin/g++ -DFMT_LOCALE -DFMT_SHARED -I/usr/include/mysql -I/home/ginman/web/myWebServer/ThreadPool/Logger -I/home/ginman/web/myWebServer/ThreadPool/ThreadPool -I/home/ginman/web/myWebServer/Logger -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/test_conn.dir/connectionpool.cc.o -c /home/ginman/web/myWebServer/ThreadPool/connectionpool.cc",
+  "file": "/home/ginman/web/myWebServer/ThreadPool/connectionpool.cc"
 }
 ]

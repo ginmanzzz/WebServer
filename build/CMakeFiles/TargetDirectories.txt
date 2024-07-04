@@ -7,5 +7,6 @@
 /home/ginman/web/myWebServer/build/Logger/CMakeFiles/rebuild_cache.dir
 /home/ginman/web/myWebServer/build/ThreadPool/CMakeFiles/pools.dir
 /home/ginman/web/myWebServer/build/ThreadPool/CMakeFiles/test_threadPool.dir
+/home/ginman/web/myWebServer/build/ThreadPool/CMakeFiles/test_conn.dir
 /home/ginman/web/myWebServer/build/ThreadPool/CMakeFiles/edit_cache.dir
 /home/ginman/web/myWebServer/build/ThreadPool/CMakeFiles/rebuild_cache.dir

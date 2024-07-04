@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include <fmt/core.h>
 
-
+// A simple test
 int fds[2];
 using namespace std;
 class Test {
@@ -29,7 +29,7 @@ int main() {
 	unordered_set<int> target;
 	pipe(fds);
 	for (int i = 0; i < 1000; i++) {
-		threadPool.append(std::move(make_unique<Test>(i)));
+		threadPool.append(make_unique<Test>(i));
 		target.insert(i);
 	}
 	fmt::print("Target set completed, its size() = {}\n", target.size());

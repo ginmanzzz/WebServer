@@ -54,9 +54,9 @@ private:
 
 class connectionRAII {
 public:
-	connectionRAII(std::shared_ptr<MYSQL> conn, std::unique_ptr<ConnectionPool>& connPool);
+	connectionRAII(ConnectionPool::SPtrSQL& conn, ConnectionPool::UPtrConnPool& connPool);
 	~connectionRAII();
 private:
-	std::shared_ptr<MYSQL> conn_; 
-	std::unique_ptr<ConnectionPool>& connPool_;
+	ConnectionPool::SPtrSQL& conn_; 
+	ConnectionPool::UPtrConnPool& connPool_;
 };

@@ -56,4 +56,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "Logger/CMakeFiles/test_blockqueue.dir/DependInfo.cmake"
   "ThreadPool/CMakeFiles/pools.dir/DependInfo.cmake"
   "ThreadPool/CMakeFiles/test_threadPool.dir/DependInfo.cmake"
+  "ThreadPool/CMakeFiles/test_conn.dir/DependInfo.cmake"
   )

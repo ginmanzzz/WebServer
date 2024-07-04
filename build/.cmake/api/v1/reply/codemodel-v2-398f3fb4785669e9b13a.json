@@ -52,7 +52,8 @@
 					"targetIndexes" : 
 					[
 						1,
-						4
+						4,
+						5
 					]
 				}
 			],
@@ -98,7 +99,8 @@
 					"targetIndexes" : 
 					[
 						1,
-						4
+						4,
+						5
 					]
 				}
 			],
@@ -114,7 +116,7 @@
 				{
 					"directoryIndex" : 2,
 					"id" : "pools::@d5e3d60c4753925707bc",
-					"jsonFile" : "target-pools-Debug-f5b22668a431f76d1241.json",
+					"jsonFile" : "target-pools-Debug-747dcd152f13bf0a4b15.json",
 					"name" : "pools",
 					"projectIndex" : 2
 				},
@@ -134,8 +136,15 @@
 				},
 				{
 					"directoryIndex" : 2,
+					"id" : "test_conn::@d5e3d60c4753925707bc",
+					"jsonFile" : "target-test_conn-Debug-0c8fbaba6063865a905c.json",
+					"name" : "test_conn",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
 					"id" : "test_threadPool::@d5e3d60c4753925707bc",
-					"jsonFile" : "target-test_threadPool-Debug-e02132e58165fafa11f5.json",
+					"jsonFile" : "target-test_threadPool-Debug-6ffc3ccb0a26fd37dd06.json",
 					"name" : "test_threadPool",
 					"projectIndex" : 2
 				}
