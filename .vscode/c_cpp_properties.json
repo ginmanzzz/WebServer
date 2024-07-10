@@ -4,8 +4,9 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/Logger",
-                "${workspaceFolder}/ThreadPool"
+                "${workspaceFolder}/logger",
+                "${workspaceFolder}/threadpool",
+                "${workspaceFolder}/http"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

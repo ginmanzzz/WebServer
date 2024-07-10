@@ -8,11 +8,12 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "../CMakeLists.txt"
-  "../Logger/CMakeLists.txt"
-  "../ThreadPool/CMakeLists.txt"
   "CMakeFiles/3.22.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeSystem.cmake"
+  "../http/CMakeLists.txt"
+  "../logger/CMakeLists.txt"
+  "../threadpool/CMakeLists.txt"
   "/usr/lib/x86_64-linux-gnu/cmake/fmt/fmt-config-version.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/fmt/fmt-config.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/fmt/fmt-targets-none.cmake"
@@ -45,16 +46,18 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "Logger/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "ThreadPool/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "logger/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "threadpool/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "http/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/server.dir/DependInfo.cmake"
-  "Logger/CMakeFiles/logger.dir/DependInfo.cmake"
-  "Logger/CMakeFiles/test_blockqueue.dir/DependInfo.cmake"
-  "ThreadPool/CMakeFiles/pools.dir/DependInfo.cmake"
-  "ThreadPool/CMakeFiles/test_threadPool.dir/DependInfo.cmake"
-  "ThreadPool/CMakeFiles/test_conn.dir/DependInfo.cmake"
+  "logger/CMakeFiles/logger.dir/DependInfo.cmake"
+  "logger/CMakeFiles/test_blockqueue.dir/DependInfo.cmake"
+  "threadpool/CMakeFiles/pools.dir/DependInfo.cmake"
+  "threadpool/CMakeFiles/test_threadPool.dir/DependInfo.cmake"
+  "threadpool/CMakeFiles/test_conn.dir/DependInfo.cmake"
+  "http/CMakeFiles/http.dir/DependInfo.cmake"
   )

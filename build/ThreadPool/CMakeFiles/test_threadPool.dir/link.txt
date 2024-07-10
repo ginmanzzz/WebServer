@@ -1,1 +1,0 @@
-/usr/bin/g++ -g CMakeFiles/test_threadPool.dir/test_threadPool.cc.o CMakeFiles/test_threadPool.dir/connectionpool.cc.o -o test_threadPool  /usr/lib/x86_64-linux-gnu/libmysqlclient.so ../Logger/liblogger.a /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1 -Wl,--as-needed 

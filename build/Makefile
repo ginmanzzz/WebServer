@@ -139,7 +139,7 @@ logger: cmake_check_build_system
 
 # fast build rule for target.
 logger/fast:
-	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/logger.dir/build.make Logger/CMakeFiles/logger.dir/build
+	$(MAKE) $(MAKESILENT) -f logger/CMakeFiles/logger.dir/build.make logger/CMakeFiles/logger.dir/build
 .PHONY : logger/fast
 
 #=============================================================================
@@ -152,7 +152,7 @@ test_blockqueue: cmake_check_build_system
 
 # fast build rule for target.
 test_blockqueue/fast:
-	$(MAKE) $(MAKESILENT) -f Logger/CMakeFiles/test_blockqueue.dir/build.make Logger/CMakeFiles/test_blockqueue.dir/build
+	$(MAKE) $(MAKESILENT) -f logger/CMakeFiles/test_blockqueue.dir/build.make logger/CMakeFiles/test_blockqueue.dir/build
 .PHONY : test_blockqueue/fast
 
 #=============================================================================
@@ -165,7 +165,7 @@ pools: cmake_check_build_system
 
 # fast build rule for target.
 pools/fast:
-	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/pools.dir/build.make ThreadPool/CMakeFiles/pools.dir/build
+	$(MAKE) $(MAKESILENT) -f threadpool/CMakeFiles/pools.dir/build.make threadpool/CMakeFiles/pools.dir/build
 .PHONY : pools/fast
 
 #=============================================================================
@@ -178,7 +178,7 @@ test_threadPool: cmake_check_build_system
 
 # fast build rule for target.
 test_threadPool/fast:
-	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_threadPool.dir/build.make ThreadPool/CMakeFiles/test_threadPool.dir/build
+	$(MAKE) $(MAKESILENT) -f threadpool/CMakeFiles/test_threadPool.dir/build.make threadpool/CMakeFiles/test_threadPool.dir/build
 .PHONY : test_threadPool/fast
 
 #=============================================================================
@@ -191,8 +191,45 @@ test_conn: cmake_check_build_system
 
 # fast build rule for target.
 test_conn/fast:
-	$(MAKE) $(MAKESILENT) -f ThreadPool/CMakeFiles/test_conn.dir/build.make ThreadPool/CMakeFiles/test_conn.dir/build
+	$(MAKE) $(MAKESILENT) -f threadpool/CMakeFiles/test_conn.dir/build.make threadpool/CMakeFiles/test_conn.dir/build
 .PHONY : test_conn/fast
+
+#=============================================================================
+# Target rules for targets named http
+
+# Build rule for target.
+http: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 http
+.PHONY : http
+
+# fast build rule for target.
+http/fast:
+	$(MAKE) $(MAKESILENT) -f http/CMakeFiles/http.dir/build.make http/CMakeFiles/http.dir/build
+.PHONY : http/fast
+
+main.o: main.cc.o
+.PHONY : main.o
+
+# target to build an object file
+main.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/main.cc.o
+.PHONY : main.cc.o
+
+main.i: main.cc.i
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/main.cc.i
+.PHONY : main.cc.i
+
+main.s: main.cc.s
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/main.cc.s
+.PHONY : main.cc.s
 
 webserver.o: webserver.cc.o
 .PHONY : webserver.o
@@ -226,12 +263,16 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... http"
 	@echo "... logger"
 	@echo "... pools"
 	@echo "... server"
 	@echo "... test_blockqueue"
 	@echo "... test_conn"
 	@echo "... test_threadPool"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 	@echo "... webserver.o"
 	@echo "... webserver.i"
 	@echo "... webserver.s"

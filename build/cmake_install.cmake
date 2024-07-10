@@ -44,8 +44,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/ginman/web/myWebServer/build/Logger/cmake_install.cmake")
-  include("/home/ginman/web/myWebServer/build/ThreadPool/cmake_install.cmake")
+  include("/home/ginman/web/myWebServer/build/logger/cmake_install.cmake")
+  include("/home/ginman/web/myWebServer/build/threadpool/cmake_install.cmake")
+  include("/home/ginman/web/myWebServer/build/http/cmake_install.cmake")
 
 endif()
 

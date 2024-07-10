@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/test_log.dir/test_log.cc.o -o test_log  liblogger.a /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1 -Wl,--as-needed 

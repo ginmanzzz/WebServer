@@ -224,7 +224,16 @@ WebServer_SOURCE_DIR:STATIC=/home/ginman/web/myWebServer
 fmt_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/fmt
 
 //Value Computed by CMake
-logger_BINARY_DIR:STATIC=/home/ginman/web/myWebServer/build/Logger
+http_BINARY_DIR:STATIC=/home/ginman/web/myWebServer/build/http
+
+//Value Computed by CMake
+http_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+http_SOURCE_DIR:STATIC=/home/ginman/web/myWebServer/http
+
+//Value Computed by CMake
+logger_BINARY_DIR:STATIC=/home/ginman/web/myWebServer/build/logger
 
 //Value Computed by CMake
 logger_IS_TOP_LEVEL:STATIC=OFF
@@ -233,16 +242,19 @@ logger_IS_TOP_LEVEL:STATIC=OFF
 logger_LIB_DEPENDS:STATIC=general;fmt::fmt;
 
 //Value Computed by CMake
-logger_SOURCE_DIR:STATIC=/home/ginman/web/myWebServer/Logger
+logger_SOURCE_DIR:STATIC=/home/ginman/web/myWebServer/logger
 
 //Value Computed by CMake
-pools_BINARY_DIR:STATIC=/home/ginman/web/myWebServer/build/ThreadPool
+pools_BINARY_DIR:STATIC=/home/ginman/web/myWebServer/build/threadpool
 
 //Value Computed by CMake
 pools_IS_TOP_LEVEL:STATIC=OFF
 
+//Dependencies for the target
+pools_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libmysqlclient.so;
+
 //Value Computed by CMake
-pools_SOURCE_DIR:STATIC=/home/ginman/web/myWebServer/ThreadPool
+pools_SOURCE_DIR:STATIC=/home/ginman/web/myWebServer/threadpool
 
 
 ########################
@@ -349,7 +361,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
