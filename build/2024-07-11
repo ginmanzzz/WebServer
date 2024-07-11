@@ -1,6 +1,32 @@
-[ERROR]: 2024-07-11 00:19:57.438513   accept error: errno is :11
+[INFO] : 2024-07-11 10:33:25.453239   received client request:
+GET /test1.jpg HTTP/1.1
+Host: 119.23.69.188:9006
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Upgrade-Insecure-Requests: 1
 
-[ERROR]: 2024-07-11 00:19:57.438586   accept error: errno is :11
 
-[ERROR]: 2024-07-11 00:19:57.694584   accept error: errno is :11
+[INFO] : 2024-07-11 10:33:25.453440   received client request:
+GET
+[INFO] : 2024-07-11 10:33:29.361611   received client request:
+GET /test1.jpg HTTP/1.1
+Host: 119.23.69.188:9006
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Upgrade-Insecure-Requests: 1
+
+
+[INFO] : 2024-07-11 10:33:44.050341   received client request:
+GET /xxx.mp4 HTTP/1.1
+Host: 119.23.69.188:9006
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Upgrade-Insecure-Requests: 1
+
 

@@ -6,6 +6,7 @@ Config generateConfig() {
 	ret.port = 9006;
 	ret.listenTRIG_ = TRIGMode::ET;
 	ret.clientTRIG_ = TRIGMode::ET;
+	ret.root = "./root";
 
 	ret.url = "localhost";
 	ret.user = "root";
@@ -110,7 +111,8 @@ bool WebServer::dealClientConn() {
 		while (1) {
 			int connFd = accept(listenFd_, (struct sockaddr*)&clientAddress, &clientAddressLength);
 			if (connFd < 0) {
-				LOG_ERROR(fmt::format("accept error: errno is :{}\n", errno));
+				if (errno != EAGAIN)
+					LOG_ERROR(fmt::format("accept error: errno is :{}\n", errno));
 				return false;
 			}
 			if (HttpConn::userCount >= MAX_HTTP_CONN_NUM) {

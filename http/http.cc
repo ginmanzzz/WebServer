@@ -121,6 +121,7 @@ bool HttpConn::readOnce() {
 		if (bytes_read <= 0)
 			return false;
 	}
+	LOG_INFO(fmt::format("received client request:\n{}", readBuf_));
 	return true;
 }
 
@@ -276,6 +277,8 @@ void HttpConn::init(int sockFd, const sockaddr_in& addr, const string root, TRIG
 	sqlPassword_ = password;
 	sqlName_ = sqlName;
 	addfd(epollFd, sockFd, true, mode);
+	if (mode == TRIGMode::ET)
+		setNonBlock(sockFd_);
 	init();
 	std::lock_guard<std::mutex> guard(idxMtx);
 	userCount++;
@@ -304,7 +307,6 @@ void HttpConn::init() {
 }
 
 HTTP_CODE HttpConn::doRequest() {
-	docRoot_ = "./root";
 	strcpy(realFile_, docRoot_.c_str());
 	size_t len = docRoot_.size();
 	const char* p = strrchr(url_, '/');
@@ -392,13 +394,13 @@ bool HttpConn::processWrite(HTTP_CODE ret) {
 		case HTTP_CODE::NO_RESOURCE:
 			addStatusLine(404, error404Title);
 			addHeaders(static_cast<int>(error404Form.size()));
-			if (!addContent(error403Form))
+			if (!addContent(error404Form))
 				return false;
 			break;
 		case HTTP_CODE::FILE_REQUEST:
 			addStatusLine(200, ok200Title);
 			if (fileSize_ != 0) {
-				addStatusLine(200, ok200Title);
+				addHeaders(static_cast<int>(fileSize_));
 				ioArr_[0].iov_base = writeBuf_;
 				ioArr_[0].iov_len = static_cast<size_t>(writeIdx_);
 				ioArr_[1].iov_base = fileAddress_;
@@ -458,29 +460,30 @@ bool HttpConn::writeOnce() {
 				modfd(epollFd, sockFd_, EPOLLOUT, triggerMode_);
 				return true;
 			}
-		}
-		unmap();
-		return false;
-	}
-	bytesHaveSend_ += static_cast<size_t>(temp);
-	bytesToSend_ -= static_cast<size_t>(temp);
-	if (bytesHaveSend_ >= ioArr_[0].iov_len) {
-		ioArr_[0].iov_len = 0;
-		ioArr_[1].iov_base = fileAddress_ + bytesHaveSend_ - writeIdx_;
-		ioArr_[1].iov_len = bytesToSend_;
-	} else {
-		ioArr_[0].iov_base = writeBuf_ + bytesHaveSend_;
-		ioArr_[0].iov_len -= bytesHaveSend_;
-	}
-	if (bytesToSend_ <= 0) {
-		unmap();
-		modfd(epollFd, sockFd_, EPOLLIN, triggerMode_);
-		if (keepAlive_) {
-			init();
-			return true;
-		}
-		else
+			fmt::print("write failed\n");
+			unmap();
 			return false;
+		}
+		bytesHaveSend_ += static_cast<size_t>(temp);
+		bytesToSend_ -= static_cast<size_t>(temp);
+		if (bytesHaveSend_ >= ioArr_[0].iov_len) {
+			ioArr_[0].iov_len = 0;
+			ioArr_[1].iov_base = fileAddress_ + bytesHaveSend_ - writeIdx_;
+			ioArr_[1].iov_len = bytesToSend_;
+		} else {
+			ioArr_[0].iov_base = writeBuf_ + bytesHaveSend_;
+			ioArr_[0].iov_len -= bytesHaveSend_;
+		}
+		if (bytesToSend_ <= 0) {
+			unmap();
+			modfd(epollFd, sockFd_, EPOLLIN, triggerMode_);
+			if (keepAlive_) {
+				init();
+				return true;
+			}
+			else
+				return false;
+		}
 	}
 	return false;
 }
