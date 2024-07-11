@@ -235,6 +235,8 @@ HTTP_CODE HttpConn::parseHeaders(char* text) {
 		text += strspn(text, " \t");
 		if (strcasecmp(text, "keep-alive") == 0)
 			keepAlive_ = true;
+		else
+			keepAlive_ = false;
 	} else if (strncasecmp(text, "Host:", 5) == 0) {
 		text += 5;
 		text += strspn(text, " \t");
@@ -277,6 +279,7 @@ void HttpConn::init(int sockFd, const sockaddr_in& addr, const string root, TRIG
 	sqlPassword_ = password;
 	sqlName_ = sqlName;
 	addfd(epollFd, sockFd, true, mode);
+	keepAlive_ = true;
 	if (mode == TRIGMode::ET)
 		setNonBlock(sockFd_);
 	init();
@@ -296,7 +299,7 @@ void HttpConn::init() {
 	host_ = nullptr;
 	content_ = nullptr;
 	contentLength_ = 0;
-	keepAlive_ = false;
+	keepAlive_ = true;
 	bytesToSend_ = 0;
 	bytesHaveSend_ = 0;
 	fileAddress_ = nullptr;
@@ -311,8 +314,46 @@ HTTP_CODE HttpConn::doRequest() {
 	size_t len = docRoot_.size();
 	const char* p = strrchr(url_, '/');
 	// log in or register check
-	if (method_ == METHOD::GET && (*(p+1) == '2' || *(p+1) == '3')) {
-		;
+	if (method_ == METHOD::POST && (*(p+1) == '2' || *(p+1) == '3')) {
+		// extract username and password, user=123&passwd=123
+		char name[100], password[100];
+		int i;
+		for (i = 5; content_[i] != '&'; i++) {
+			name[i - 5] = content_[i];
+		}
+		name[i - 5] = '\0';
+		int j = 0;
+		for (i = i + 10; content_[i] != '\0'; i++, j++) {
+			password[j] = content_[i];
+		}
+		password[j] = '\0';
+		if (*(p+1) == '3') {
+			char sqlInsert[200];
+			strcpy(sqlInsert, "INSERT INTO user(username, passwd) VALUES(");
+			strcat(sqlInsert, "'");
+			strcat(sqlInsert, name);
+			strcat(sqlInsert, "', '");
+			strcat(sqlInsert, password);
+			strcat(sqlInsert, "')");
+
+			if (user2Password.find(name) == user2Password.end()) {
+				std::unique_lock<std::mutex> lock(SQL_Mutex);
+				int res = mysql_query(pSQL.get(), sqlInsert);
+				if (!res) {
+					strcpy(url_, "/log.html");
+					user2Password[name] = password;
+				}
+				else
+					strcpy(url_, "/registerError.html");
+			}
+			else
+				strcpy(url_, "/registerError.html");
+		} else if (*(p+1) == '2') {
+			if (user2Password.find(name) != user2Password.end() && user2Password[name] == password) 
+				strcpy(url_, "/welcome.html");
+			else
+				strcpy(url_, "/logError.html");
+		}
 	}
 	if (*(p+1) == '0') {
 		// register page
@@ -321,6 +362,15 @@ HTTP_CODE HttpConn::doRequest() {
 	} else if (*(p+1) == '1') {
 		// log in page
 		string tmp = "/log.html";
+		strncpy(realFile_ + len, tmp.c_str(), tmp.size());
+	} else if (*(p+1) == '5') {
+		string tmp = "/picture.html";
+		strncpy(realFile_ + len, tmp.c_str(), tmp.size());
+	} else if (*(p+1) == '6') {
+		string tmp = "/video.html";
+		strncpy(realFile_ + len, tmp.c_str(), tmp.size());
+	} else if (*(p+1) == '7') {
+		string tmp = "/fans.html";
 		strncpy(realFile_ + len, tmp.c_str(), tmp.size());
 	} else {
 		// file request

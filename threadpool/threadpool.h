@@ -98,9 +98,9 @@ bool ThreadPool<T>::append(std::shared_ptr<T> request) {
 }
 template<typename T>
 bool ThreadPool<T>::append(std::shared_ptr<T> request, STATE_RW state) {
+	request->state_rw = state;
 	if (append(request) == false)
 		return false;
-	request->state_rw = state;
 	return true;
 }
 

@@ -54,6 +54,8 @@ void WebServer::init() {
 	initThreadPool();
 	initHttpConn();
 	initPort();
+	initSQLResult(ConnectionPool::getInstance());
+	LOG_INFO(fmt::format("Server init successfully\n"));
 }
 
 void WebServer::initPort() {

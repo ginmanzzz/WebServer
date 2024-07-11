@@ -1,32 +1,152 @@
-[INFO] : 2024-07-11 10:33:25.453239   received client request:
-GET /test1.jpg HTTP/1.1
+[INFO] : 2024-07-11 20:29:21.972935   Server init successfully
+
+[INFO] : 2024-07-11 20:29:26.824846   received client request:
+GET / HTTP/1.1
 Host: 119.23.69.188:9006
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
 Accept-Encoding: gzip, deflate
 Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Purpose: prefetch
+Sec-Purpose: prefetch;prerender
 Upgrade-Insecure-Requests: 1
 
 
-[INFO] : 2024-07-11 10:33:25.453440   received client request:
-GET
-[INFO] : 2024-07-11 10:33:29.361611   received client request:
-GET /test1.jpg HTTP/1.1
+[INFO] : 2024-07-11 20:29:28.786631   received client request:
+POST /0 HTTP/1.1
 Host: 119.23.69.188:9006
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Content-Length: 0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
 Accept-Encoding: gzip, deflate
 Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Cache-Control: max-age=0
+Content-Type: application/x-www-form-urlencoded
+Origin: http://119.23.69.188:9006
+Referer: http://119.23.69.188:9006/
 Upgrade-Insecure-Requests: 1
 
 
-[INFO] : 2024-07-11 10:33:44.050341   received client request:
+[INFO] : 2024-07-11 20:29:33.596807   received client request:
+POST /3CGISQL.cgi HTTP/1.1
+Host: 119.23.69.188:9006
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Content-Length: 27
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Cache-Control: max-age=0
+Content-Type: application/x-www-form-urlencoded
+Origin: http://119.23.69.188:9006
+Referer: http://119.23.69.188:9006/0
+Upgrade-Insecure-Requests: 1
+
+user=ginman&password=336868
+[INFO] : 2024-07-11 20:29:36.348796   received client request:
+POST /1 HTTP/1.1
+Host: 119.23.69.188:9006
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Content-Length: 0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Cache-Control: max-age=0
+Content-Type: application/x-www-form-urlencoded
+Origin: http://119.23.69.188:9006
+Referer: http://119.23.69.188:9006/
+Upgrade-Insecure-Requests: 1
+
+
+[INFO] : 2024-07-11 20:29:40.233092   received client request:
+POST /2CGISQL.cgi HTTP/1.1
+Host: 119.23.69.188:9006
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Content-Length: 27
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Cache-Control: max-age=0
+Content-Type: application/x-www-form-urlencoded
+Origin: http://119.23.69.188:9006
+Referer: http://119.23.69.188:9006/1
+Upgrade-Insecure-Requests: 1
+
+user=ginman&password=336868
+[INFO] : 2024-07-11 20:29:41.339131   received client request:
+POST /5 HTTP/1.1
+Host: 119.23.69.188:9006
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Content-Length: 0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Cache-Control: max-age=0
+Content-Type: application/x-www-form-urlencoded
+Origin: http://119.23.69.188:9006
+Referer: http://119.23.69.188:9006/2CGISQL.cgi
+Upgrade-Insecure-Requests: 1
+
+
+[INFO] : 2024-07-11 20:29:41.379137   received client request:
+GET /xxx.jpg HTTP/1.1
+Host: 119.23.69.188:9006
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Referer: http://119.23.69.188:9006/5
+
+
+[INFO] : 2024-07-11 20:29:54.383897   received client request:
+
+[INFO] : 2024-07-11 20:29:55.459001   received client request:
+POST /6 HTTP/1.1
+Host: 119.23.69.188:9006
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Content-Length: 0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Cache-Control: max-age=0
+Content-Type: application/x-www-form-urlencoded
+Origin: http://119.23.69.188:9006
+Referer: http://119.23.69.188:9006/2CGISQL.cgi
+Upgrade-Insecure-Requests: 1
+
+
+[INFO] : 2024-07-11 20:29:55.499006   received client request:
 GET /xxx.mp4 HTTP/1.1
 Host: 119.23.69.188:9006
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Accept: */*
+Accept-Encoding: identity;q=1, *;q=0
+Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Range: bytes=0-
+Referer: http://119.23.69.188:9006/6
+
+
+[INFO] : 2024-07-11 20:30:15.226384   received client request:
+POST /7 HTTP/1.1
+Host: 119.23.69.188:9006
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Content-Length: 0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
 Accept-Encoding: gzip, deflate
 Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Cache-Control: max-age=0
+Content-Type: application/x-www-form-urlencoded
+Origin: http://119.23.69.188:9006
+Referer: http://119.23.69.188:9006/2CGISQL.cgi
 Upgrade-Insecure-Requests: 1
+
+
+[INFO] : 2024-07-11 20:30:15.264273   received client request:
+GET /test1.jpg HTTP/1.1
+Host: 119.23.69.188:9006
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Referer: http://119.23.69.188:9006/7
 
 
