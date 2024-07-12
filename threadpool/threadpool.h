@@ -12,6 +12,8 @@
 #include "semaphore.h"
 #include "connectionpool.h"
 
+enum class ConcurrencyMode { PROACTOR, REACTOR };
+
 template<typename T>
 class ThreadPool {
 private:
@@ -53,6 +55,9 @@ public:
     bool append(std::shared_ptr<T> request);
     bool append(std::shared_ptr<T> request, STATE_RW state);
 	void terminate();
+
+public:
+	ConcurrencyMode modeConcurrency_;
 };
 
 template<typename T>

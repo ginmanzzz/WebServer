@@ -1,4 +1,4 @@
-# Logger subProject
+# Pools subProject
 project(pools)
 
 # Pack these into a static library
@@ -28,10 +28,11 @@ target_link_libraries(pools PUBLIC ${MySQL_LIBRARY_DIR}/${MySQL_LIBRARIES})
 # Test
 add_executable(test_threadPool test_threadPool.cc connectionpool.cc)
 add_executable(test_conn test_conn.cc connectionpool.cc)
-target_link_libraries(test_conn PUBLIC ${MySQL_LIBRARY_DIR}/${MySQL_LIBRARIES} logger)
-target_link_libraries(test_threadPool PUBLIC ${MySQL_LIBRARY_DIR}/${MySQL_LIBRARIES} logger)
+target_link_libraries(test_conn PUBLIC ${MySQL_LIBRARY_DIR}/${MySQL_LIBRARIES} logger http)
+target_link_libraries(test_threadPool PUBLIC ${MySQL_LIBRARY_DIR}/${MySQL_LIBRARIES} logger http)
 
 
 # Include directories
 include_directories(logger)
+include_directories(http)
 include_directories(threadpool)
