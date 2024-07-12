@@ -1,45 +1,25 @@
 #include "webserver.h"
+#include "config.h"
 
-Config generateConfig() {
-	Config ret;
-	ret.closeLog = false;
-	ret.port = 9006;
-	ret.listenTRIG_ = TRIGMode::ET;
-	ret.clientTRIG_ = TRIGMode::ET;
-	ret.root = "./root";
-
-	ret.url = "localhost";
-	ret.user = "root";
-	ret.password = "mj2012..";
-	ret.DBName = "ginmandb";
-	ret.SQLPort = 3306;
-	ret.maxConn = 10;
-
-	ret.threadNum = 8;
-	ret.maxRequest = 10000;
-
-	ret.path = "./";
-	ret.maxLines = 500000;
-	ret.maxQueueSize = 0;
-	return ret;
-}
+constexpr Config config = generateConfig();
 
 void WebServer::initLog() {
-	Logger::getInstance()->init(config.path, config.maxLines, config.maxQueueSize);
+	Logger::getInstance()->init(config.path_, config.maxLines_, config.maxQueueSize_);
 }
 
 void WebServer::initThreadPool() {
- 	pThreadPool = std::make_unique<ThreadPool<HttpConn>>(ConnectionPool::getInstance(), config.threadNum, config.maxRequest);
+ 	pThreadPool = std::make_unique<ThreadPool<HttpConn>>(ConnectionPool::getInstance(), config.threadNum_, config.maxRequest_);
+	pThreadPool->modeConcurrency_ = config.modeConcurrency_;
 }
 
 void WebServer::initSQL() {
-	ConnectionPool::getInstance()->init(config.url,
-										config.user,
-										config.password,
-										config.DBName,
-										config.SQLPort,
-										config.maxConn,
-										config.closeLog);
+	ConnectionPool::getInstance()->init(config.url_,
+										config.user_,
+										config.password_,
+										config.DBName_,
+										config.SQLPort_,
+										config.maxConn_,
+										config.closeLog_);
 }
 
 void WebServer::initHttpConn() {
@@ -68,7 +48,7 @@ void WebServer::initPort() {
 	bzero(&address, sizeof(address));
 	address.sin_family = AF_INET;
 	address.sin_addr.s_addr = htonl(INADDR_ANY);
-	address.sin_port = htons(config.port);
+	address.sin_port = htons(config.port_);
 	int flag = 1;
 	setsockopt(listenFd_, SOL_SOCKET, SO_REUSEADDR, &flag, sizeof(flag));
 	if (bind(listenFd_, reinterpret_cast<struct sockaddr*>(&address), sizeof(address)) < 0) {
@@ -107,8 +87,8 @@ bool WebServer::dealClientConn() {
 			LOG_ERROR(fmt::format("server is too busy, failed to connect new client\n"));
 			return false;
 		}
-		HttpConnArr_[static_cast<size_t>(connFd)]->init(connFd, clientAddress, config.root, config.clientTRIG_,
-													   config.closeLog, config.user, config.password, config.DBName);
+		HttpConnArr_[static_cast<size_t>(connFd)]->init(connFd, clientAddress, config.root_, config.clientTRIG_,
+													   config.closeLog_, config.user_, config.password_, config.DBName_);
 	} else {
 		while (1) {
 			int connFd = accept(listenFd_, (struct sockaddr*)&clientAddress, &clientAddressLength);
@@ -121,13 +101,33 @@ bool WebServer::dealClientConn() {
 				LOG_ERROR(fmt::format("server is too busy, failed to connect new client\n"));
 				return false;
 			}
-			HttpConnArr_[static_cast<size_t>(connFd)]->init(connFd, clientAddress, config.root, config.clientTRIG_,
-													   		config.closeLog, config.user, config.password, config.DBName);
+			HttpConnArr_[static_cast<size_t>(connFd)]->init(connFd, clientAddress, config.root_, config.clientTRIG_,
+													   		config.closeLog_, config.user_, config.password_, config.DBName_);
 		}
 	}
 	return true;
 }
 
+void WebServer::dealWithRead(int sockfd) {
+	if (config.modeConcurrency_ == ConcurrencyMode::REACTOR) {
+		// reactor
+		pThreadPool->append(HttpConnArr_[static_cast<unsigned>(sockfd)], STATE_RW::READ);
+	} else {
+		// proactor
+		HttpConnArr_[static_cast<unsigned>(sockfd)]->readOnce();
+		pThreadPool->append(HttpConnArr_[static_cast<unsigned>(sockfd)]);
+	}
+}
+
+void WebServer::dealWithWrite(int sockfd) { 
+	if (config.modeConcurrency_ == ConcurrencyMode::REACTOR) {
+		// reactor
+		pThreadPool->append(HttpConnArr_[static_cast<unsigned>(sockfd)], STATE_RW::WRITE);
+	} else {
+		// proactor
+		HttpConnArr_[static_cast<unsigned>(sockfd)]->writeOnce();
+	}
+}
 void WebServer::eventLoop() {
 	while (true) {
 		int number = epoll_wait(HttpConn::epollFd, events_, MAX_EVENT_NUMBER, -1);
@@ -140,10 +140,11 @@ void WebServer::eventLoop() {
 			if (sockfd == listenFd_) {
 				dealClientConn();
 			} else if (events_[i].events & EPOLLIN) {
-				pThreadPool->append(HttpConnArr_[static_cast<unsigned>(sockfd)], STATE_RW::READ);
+				dealWithRead(sockfd);
 			} else if (events_[i].events & EPOLLOUT) {
-				pThreadPool->append(HttpConnArr_[static_cast<unsigned>(sockfd)], STATE_RW::WRITE);
+				dealWithWrite(sockfd);
 			}
 		}
 	}
 }
+

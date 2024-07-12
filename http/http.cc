@@ -369,9 +369,6 @@ HTTP_CODE HttpConn::doRequest() {
 	} else if (*(p+1) == '6') {
 		string tmp = "/video.html";
 		strncpy(realFile_ + len, tmp.c_str(), tmp.size());
-	} else if (*(p+1) == '7') {
-		string tmp = "/fans.html";
-		strncpy(realFile_ + len, tmp.c_str(), tmp.size());
 	} else {
 		// file request
 		strncpy(realFile_ + len, url_, FILENAME_LEN - len - 1);

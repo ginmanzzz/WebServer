@@ -141,13 +141,19 @@ void ThreadPool<T>::run() {
         if (request == nullptr)
             continue;
         
-		if (request->state_rw == STATE_RW::READ) {
-			request->readOnce();
+		if (modeConcurrency_ == ConcurrencyMode::REACTOR) {
+			// reactor
+			if (request->state_rw == STATE_RW::READ) {
+				request->readOnce();
+				connectionRAII mysqlConn(request->pSQL, p_connPool);
+				request->process();
+			} else {
+				request->writeOnce();
+			}
+		} else {
+			// proactor
 			connectionRAII mysqlConn(request->pSQL, p_connPool);
 			request->process();
-		} else {
-			// note: writeOnce has added closeConn() to pass test
-			request->writeOnce();
 		}
         completed_cnt[thread_index]++;
     }

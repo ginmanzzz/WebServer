@@ -220,6 +220,15 @@ WebServer_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 WebServer_SOURCE_DIR:STATIC=/home/ginman/web/myWebServer
 
+//Value Computed by CMake
+config_BINARY_DIR:STATIC=/home/ginman/web/myWebServer/build/config
+
+//Value Computed by CMake
+config_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+config_SOURCE_DIR:STATIC=/home/ginman/web/myWebServer/config
+
 //The directory containing a CMake configuration file for fmt.
 fmt_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/fmt
 

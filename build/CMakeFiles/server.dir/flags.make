@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = -DFMT_LOCALE -DFMT_SHARED
 
-CXX_INCLUDES = -I/home/ginman/web/myWebServer/logger -I/home/ginman/web/myWebServer/threadpool -I/home/ginman/web/myWebServer/http
+CXX_INCLUDES = -I/home/ginman/web/myWebServer/logger -I/home/ginman/web/myWebServer/threadpool -I/home/ginman/web/myWebServer/http -I/home/ginman/web/myWebServer
 
 CXX_FLAGS = -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17
 

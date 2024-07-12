@@ -1170,6 +1170,42 @@
 			"value" : "/home/ginman/web/myWebServer"
 		},
 		{
+			"name" : "config_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/ginman/web/myWebServer/build/config"
+		},
+		{
+			"name" : "config_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "OFF"
+		},
+		{
+			"name" : "config_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/ginman/web/myWebServer/config"
+		},
+		{
 			"name" : "fmt_DIR",
 			"properties" : 
 			[
