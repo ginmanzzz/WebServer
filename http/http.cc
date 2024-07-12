@@ -482,6 +482,7 @@ void HttpConn::process() {
 		return;
 	}
 	if (processWrite(ret) == false) {
+		closeConn();
 		LOG_ERROR(fmt::format("The write buffer is too small\n"));
 		exit(1);
 	}
@@ -507,9 +508,12 @@ bool HttpConn::writeOnce() {
 		temp = writev(sockFd_, ioArr_, ioCnt);
 		if (temp < 0) {
 			if (errno == EAGAIN) {
+				// buffer fulfilled, wait for next chance to write
 				modfd(epollFd, sockFd_, EPOLLOUT, triggerMode_);
 				return true;
 			}
+			// error write
+			closeConn();
 			fmt::print("write failed\n");
 			unmap();
 			return false;
@@ -528,6 +532,7 @@ bool HttpConn::writeOnce() {
 			unmap();
 			modfd(epollFd, sockFd_, EPOLLIN, triggerMode_);
 			if (keepAlive_) {
+				// wait for the next HTTP request
 				init();
 				return true;
 			}
