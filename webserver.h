@@ -9,7 +9,7 @@
 #include "http.h"
 
 const int MAX_EVENT_NUMBER = 1024;
-const int MAX_HTTP_CONN_NUM = 1024;
+const int MAX_HTTP_CONN_NUM = 65536;
 
 struct Config {
 	bool closeLog;

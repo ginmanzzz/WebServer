@@ -141,6 +141,7 @@ void ThreadPool<T>::run() {
 			connectionRAII mysqlConn(request->pSQL, p_connPool);
 			request->process();
 		} else {
+			// note: writeOnce has added closeConn() to pass test
 			request->writeOnce();
 		}
         completed_cnt[thread_index]++;

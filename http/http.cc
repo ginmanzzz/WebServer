@@ -531,8 +531,10 @@ bool HttpConn::writeOnce() {
 				init();
 				return true;
 			}
-			else
+			else {
+				closeConn();
 				return false;
+			}
 		}
 	}
 	return false;
