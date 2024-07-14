@@ -34,10 +34,11 @@ add_subdirectory(http)
 include_directories(logger)
 include_directories(threadpool)
 include_directories(http)
+include_directories(timer)
 include_directories(${CMAKE_SOURCE_DIR})
 
 # Executable file
-add_executable(server main.cc webserver.cc)
+add_executable(server main.cc webserver.cc ./timer/timer.cc)
 
 # Link subDirectories libraries
 target_link_libraries(server PRIVATE logger pools http)

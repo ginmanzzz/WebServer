@@ -231,6 +231,30 @@ main.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/main.cc.s
 .PHONY : main.cc.s
 
+timer/timer.o: timer/timer.cc.o
+.PHONY : timer/timer.o
+
+# target to build an object file
+timer/timer.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/timer/timer.cc.o
+.PHONY : timer/timer.cc.o
+
+timer/timer.i: timer/timer.cc.i
+.PHONY : timer/timer.i
+
+# target to preprocess a source file
+timer/timer.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/timer/timer.cc.i
+.PHONY : timer/timer.cc.i
+
+timer/timer.s: timer/timer.cc.s
+.PHONY : timer/timer.s
+
+# target to generate assembly for a file
+timer/timer.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/timer/timer.cc.s
+.PHONY : timer/timer.cc.s
+
 webserver.o: webserver.cc.o
 .PHONY : webserver.o
 
@@ -273,6 +297,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... timer/timer.o"
+	@echo "... timer/timer.i"
+	@echo "... timer/timer.s"
 	@echo "... webserver.o"
 	@echo "... webserver.i"
 	@echo "... webserver.s"

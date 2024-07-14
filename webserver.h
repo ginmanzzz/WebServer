@@ -8,8 +8,9 @@
 #include "connectionpool.h"
 #include "http.h"
 
-const int MAX_EVENT_NUMBER = 1024;
-const int MAX_HTTP_CONN_NUM = 65536;
+constexpr int MAX_EVENT_NUMBER = 65536;
+constexpr int MAX_HTTP_CONN_NUM = 65536;
+constexpr unsigned TIME_SLOT = 5;
 
 class WebServer {
 
@@ -29,7 +30,9 @@ private:
 	void initThreadPool();
 	void initPort();
 	void initHttpConn();
+	void initTimer();
 	bool dealClientConn();
 	void dealWithRead(int sockfd);
 	void dealWithWrite(int sockfd);
+	bool dealWithSignal(bool& timeout, bool& stopServer);
 };

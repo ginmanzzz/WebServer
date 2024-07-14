@@ -1,13 +1,18 @@
 [
 {
   "directory": "/home/ginman/web/myWebServer/build",
-  "command": "/usr/bin/g++ -DFMT_LOCALE -DFMT_SHARED -I/home/ginman/web/myWebServer/logger -I/home/ginman/web/myWebServer/threadpool -I/home/ginman/web/myWebServer/http -I/home/ginman/web/myWebServer -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/server.dir/main.cc.o -c /home/ginman/web/myWebServer/main.cc",
+  "command": "/usr/bin/g++ -DFMT_LOCALE -DFMT_SHARED -I/home/ginman/web/myWebServer/logger -I/home/ginman/web/myWebServer/threadpool -I/home/ginman/web/myWebServer/http -I/home/ginman/web/myWebServer/timer -I/home/ginman/web/myWebServer -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/server.dir/main.cc.o -c /home/ginman/web/myWebServer/main.cc",
   "file": "/home/ginman/web/myWebServer/main.cc"
 },
 {
   "directory": "/home/ginman/web/myWebServer/build",
-  "command": "/usr/bin/g++ -DFMT_LOCALE -DFMT_SHARED -I/home/ginman/web/myWebServer/logger -I/home/ginman/web/myWebServer/threadpool -I/home/ginman/web/myWebServer/http -I/home/ginman/web/myWebServer -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/server.dir/webserver.cc.o -c /home/ginman/web/myWebServer/webserver.cc",
+  "command": "/usr/bin/g++ -DFMT_LOCALE -DFMT_SHARED -I/home/ginman/web/myWebServer/logger -I/home/ginman/web/myWebServer/threadpool -I/home/ginman/web/myWebServer/http -I/home/ginman/web/myWebServer/timer -I/home/ginman/web/myWebServer -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/server.dir/webserver.cc.o -c /home/ginman/web/myWebServer/webserver.cc",
   "file": "/home/ginman/web/myWebServer/webserver.cc"
+},
+{
+  "directory": "/home/ginman/web/myWebServer/build",
+  "command": "/usr/bin/g++ -DFMT_LOCALE -DFMT_SHARED -I/home/ginman/web/myWebServer/logger -I/home/ginman/web/myWebServer/threadpool -I/home/ginman/web/myWebServer/http -I/home/ginman/web/myWebServer/timer -I/home/ginman/web/myWebServer -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/server.dir/timer/timer.cc.o -c /home/ginman/web/myWebServer/timer/timer.cc",
+  "file": "/home/ginman/web/myWebServer/timer/timer.cc"
 },
 {
   "directory": "/home/ginman/web/myWebServer/build/logger",

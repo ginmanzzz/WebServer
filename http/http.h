@@ -70,6 +70,7 @@ public:
 	bool readOnce();
 	void process();
 	bool writeOnce();
+	void closeConn();
 
     // Main machine
     HTTP_CODE processRead();
@@ -153,7 +154,6 @@ private:
 	bool addBlankLine();
 	bool addContent(const string& s);
     bool processWrite(HTTP_CODE ret);
-	void closeConn();
 	void unmap();
 };
 

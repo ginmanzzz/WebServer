@@ -43,27 +43,28 @@ struct Config {
 
 constexpr Config generateConfig() {
 	return Config{	
-		false,
-	 	9006,
-		TRIGMode::ET,
-		TRIGMode::ET,
-		"./root",
+		false,    		// close log
+	 	9006,  			// web port
+		TRIGMode::ET,   // listen socket mode
+		TRIGMode::ET,   // client socket mode
+		"./root",       // the file's root 
 
-		"localhost",
-		"root",
-		"mj2012..",
-		"ginmandb",
-		3306,
-		10,
+		"localhost",    // MYSQL URL
+		"root",         // MYSQL user name
+		"mj2012..",     // MYSQL password
+		"ginmandb",     // MYSQL table name
+		3306,           // MYSQL port
+		10,             // MYSQL connectionPool maxConnections
 
-		8,
-		10000,
+		8,              // threadPool maxConnections
+		10000,          // threadPool maxRequest
 
-		"./",
-		500000,
-		0,
+		"./",           // log file path
+		500000,         // maxLines in a log file
+		0,              // The logger's blockQueue's max size, if size > 0, it will be asyn
 
-		ConcurrencyMode::REACTOR
+		// ConcurrencyMode::REACTOR
+		ConcurrencyMode::PROACTOR
 	};
 }
 

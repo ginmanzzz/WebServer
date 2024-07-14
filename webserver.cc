@@ -1,7 +1,13 @@
 #include "webserver.h"
 #include "config.h"
+#include "timer.h"
+
+#include <unistd.h>
+#include <signal.h>
+#include <assert.h>
 
 constexpr Config config = generateConfig();
+extern int pipefd[2];
 
 void WebServer::initLog() {
 	Logger::getInstance()->init(config.path_, config.maxLines_, config.maxQueueSize_);
@@ -35,6 +41,7 @@ void WebServer::init() {
 	initHttpConn();
 	initPort();
 	initSQLResult(ConnectionPool::getInstance());
+	initTimer();
 	LOG_INFO(fmt::format("Server init successfully\n"));
 }
 
@@ -72,6 +79,19 @@ void WebServer::initPort() {
 		fmt::print("epoll register listen socket failed\n");
 		exit(1);
 	}
+}
+
+void WebServer::initTimer() {
+	assert(pipe(pipefd) != -1);
+	// set pipefd nonblock, write fd can't block, it will affect the main task
+	// read fd can't block, because it should be register in epoll event
+	setNonBlock(pipefd[1]);
+	// addfd will set nonblock
+	addfd(HttpConn::epollFd, pipefd[0], false, TRIGMode::ET);
+	addSignal(SIGALRM, sigHandler, true);
+	addSignal(SIGTERM, sigHandler, true);
+	// start the timer
+	alarm(TIME_SLOT);
 }
 
 bool WebServer::dealClientConn() {
@@ -128,10 +148,34 @@ void WebServer::dealWithWrite(int sockfd) {
 		HttpConnArr_[static_cast<unsigned>(sockfd)]->writeOnce();
 	}
 }
+
+bool WebServer::dealWithSignal(bool& timeout, bool& stopServer) {
+	ssize_t ret = 0;
+	char signals[128];
+	ret = read(pipefd[0], signals, sizeof(signals));
+	if (ret == -1 || ret == 0) {
+		return false;
+	}
+	for (int i = 0; i < ret; i++) {
+		switch (signals[i]) {
+			case SIGALRM:
+				timeout = true;
+				break;
+			case SIGTERM:
+				stopServer = true;
+				break;
+		}
+	}
+	return true;
+}
+
 void WebServer::eventLoop() {
-	while (true) {
+	bool timeout = false;
+	bool stopServer = false;
+	while (!stopServer) {
 		int number = epoll_wait(HttpConn::epollFd, events_, MAX_EVENT_NUMBER, -1);
-		if (number < 0 && errno == EINTR) {
+		if (number < 0 && errno != EINTR) {
+			// errno == EINTR because the signal will interrupt epoll
 			LOG_ERROR("epoll_wait failed\n");
 			break;
 		}
@@ -139,10 +183,19 @@ void WebServer::eventLoop() {
 			int sockfd = events_[i].data.fd;
 			if (sockfd == listenFd_) {
 				dealClientConn();
+			} else if (sockfd == pipefd[0] && events_[i].events & EPOLLIN) {
+				dealWithSignal(timeout, stopServer);
 			} else if (events_[i].events & EPOLLIN) {
 				dealWithRead(sockfd);
 			} else if (events_[i].events & EPOLLOUT) {
 				dealWithWrite(sockfd);
+			} else if (events_[i].events & (EPOLLRDHUP | EPOLLHUP | EPOLLERR)) {
+				HttpConnArr_[static_cast<unsigned>(sockfd)]->closeConn();
+			}
+			if (timeout) {
+				// timer handler
+				timeout = false;
+				alarm(TIME_SLOT);
 			}
 		}
 	}

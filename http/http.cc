@@ -16,15 +16,15 @@ int HttpConn::epollFd = -1;
 size_t HttpConn::userCount = 0; 
 std::mutex idxMtx;
 
-std::string ok200Title = 	"OK";
-std::string error400Title = "Bad Request";
-std::string error400Form = 	"Your request has bad syntax or is inherently impossible to staisfy.\n";
-std::string error403Title = "Forbidden";
-std::string error403Form = 	"You do not have permission to get file from the server.\n";
-std::string error404Title = "Not found";
-std::string error404Form = 	"The request file was not found on this server.\n";
-std::string error500Title = "Internal Error";
-std::string error500Form = 	"There was an unusal problem serving the request file.\n";
+const std::string ok200Title = 		"OK";
+const std::string error400Title = 	"Bad Request";
+const std::string error400Form = 	"Your request has bad syntax or is inherently impossible to staisfy.\n";
+const std::string error403Title = 	"Forbidden";
+const std::string error403Form = 	"You do not have permission to get file from the server.\n";
+const std::string error404Title = 	"Not found";
+const std::string error404Form = 	"The request file was not found on this server.\n";
+const std::string error500Title = 	"Internal Error";
+const std::string error500Form = 	"There was an unusal problem serving the request file.\n";
 
 namespace fs = std::filesystem;
 
@@ -71,8 +71,8 @@ void addfd(int epollfd, int fd, bool one_shot, TRIGMode mode) {
 	}
 	if (one_shot)
 		event.events |= EPOLLONESHOT;
-	epoll_ctl(epollfd, EPOLL_CTL_ADD, fd, &event);
 	setNonBlock(fd);
+	epoll_ctl(epollfd, EPOLL_CTL_ADD, fd, &event);
 }
 
 void removefd(int epollfd, int fd) {
