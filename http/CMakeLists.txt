@@ -20,10 +20,3 @@ include_directories(${CMAKE_SOURCE_DIR}/logger)
 
 target_include_directories(http PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-
-
-# Test
-# add_executable(test_http test_http.cc)
-
-# target_link_libraries(test_http http)
-

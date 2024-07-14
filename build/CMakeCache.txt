@@ -265,6 +265,18 @@ pools_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libmysqlclient.so;
 //Value Computed by CMake
 pools_SOURCE_DIR:STATIC=/home/ginman/web/myWebServer/threadpool
 
+//Value Computed by CMake
+timer_BINARY_DIR:STATIC=/home/ginman/web/myWebServer/build/timer
+
+//Value Computed by CMake
+timer_IS_TOP_LEVEL:STATIC=OFF
+
+//Dependencies for the target
+timer_LIB_DEPENDS:STATIC=general;http;general;pools;
+
+//Value Computed by CMake
+timer_SOURCE_DIR:STATIC=/home/ginman/web/myWebServer/timer
+
 
 ########################
 # INTERNAL cache entries
@@ -370,7 +382,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

@@ -14,6 +14,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../http/CMakeLists.txt"
   "../logger/CMakeLists.txt"
   "../threadpool/CMakeLists.txt"
+  "../timer/CMakeLists.txt"
   "/usr/lib/x86_64-linux-gnu/cmake/fmt/fmt-config-version.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/fmt/fmt-config.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/fmt/fmt-targets-none.cmake"
@@ -49,6 +50,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "logger/CMakeFiles/CMakeDirectoryInformation.cmake"
   "threadpool/CMakeFiles/CMakeDirectoryInformation.cmake"
   "http/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "timer/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -60,4 +62,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "threadpool/CMakeFiles/test_threadPool.dir/DependInfo.cmake"
   "threadpool/CMakeFiles/test_conn.dir/DependInfo.cmake"
   "http/CMakeFiles/http.dir/DependInfo.cmake"
+  "timer/CMakeFiles/timer.dir/DependInfo.cmake"
   )

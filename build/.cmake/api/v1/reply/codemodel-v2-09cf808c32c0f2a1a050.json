@@ -10,7 +10,8 @@
 					[
 						1,
 						2,
-						3
+						3,
+						4
 					],
 					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
@@ -71,6 +72,21 @@
 					[
 						0
 					]
+				},
+				{
+					"build" : "timer",
+					"jsonFile" : "directory-timer-Debug-952bca6e32248fff3b57.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 4,
+					"source" : "timer",
+					"targetIndexes" : 
+					[
+						7
+					]
 				}
 			],
 			"name" : "Debug",
@@ -81,7 +97,8 @@
 					[
 						1,
 						2,
-						3
+						3,
+						4
 					],
 					"directoryIndexes" : 
 					[
@@ -131,6 +148,18 @@
 					[
 						0
 					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						4
+					],
+					"name" : "timer",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						7
+					]
 				}
 			],
 			"targets" : 
@@ -159,7 +188,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "server::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-server-Debug-f106353d230a859b93a7.json",
+					"jsonFile" : "target-server-Debug-7c83fe7819aa39c29f6e.json",
 					"name" : "server",
 					"projectIndex" : 0
 				},
@@ -183,6 +212,13 @@
 					"jsonFile" : "target-test_threadPool-Debug-e411ba03d4d1013f42c9.json",
 					"name" : "test_threadPool",
 					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "timer::@e9ff641aa61df0ac1632",
+					"jsonFile" : "target-timer-Debug-7eecf1ceafd373e370e7.json",
+					"name" : "timer",
+					"projectIndex" : 4
 				}
 			]
 		}

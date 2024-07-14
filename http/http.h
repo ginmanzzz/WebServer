@@ -139,6 +139,7 @@ public:
 	static size_t userCount;
 	STATE_RW state_rw;
     ConnectionPool::SPtrSQL pSQL;
+	static std::mutex idxMtx;
 
 private:
     char* getLine() { return readBuf_ + startLine_; }

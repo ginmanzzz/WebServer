@@ -1,10 +1,9 @@
 #include "webserver.h"
 #include <unistd.h>
 
-WebServer wb;
-
 int main() {
-	wb.init();
-	wb.eventLoop();
+	std::unique_ptr<WebServer> pServer = std::make_unique<WebServer>();
+	pServer->init();
+	pServer->eventLoop();
 	return 0;
 }

@@ -29,6 +29,7 @@ find_package(fmt REQUIRED)
 add_subdirectory(logger)
 add_subdirectory(threadpool)
 add_subdirectory(http)
+add_subdirectory(timer)
 
 # Include directories
 include_directories(logger)
@@ -38,8 +39,8 @@ include_directories(timer)
 include_directories(${CMAKE_SOURCE_DIR})
 
 # Executable file
-add_executable(server main.cc webserver.cc ./timer/timer.cc)
+add_executable(server main.cc webserver.cc)
 
 # Link subDirectories libraries
-target_link_libraries(server PRIVATE logger pools http)
+target_link_libraries(server PRIVATE logger pools http timer)
 
