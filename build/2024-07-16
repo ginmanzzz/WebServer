@@ -1,0 +1,54 @@
+[INFO] : 2024-07-16 00:08:07.653778   Server init successfully
+
+[INFO] : 2024-07-16 00:08:12.662214   New client:120.229.174.13 connected, port is 15755, sockfd is 18
+
+[INFO] : 2024-07-16 00:08:12.662351   received client request:
+GET / HTTP/1.1
+Host: 119.23.69.188:9006
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Upgrade-Insecure-Requests: 1
+
+
+[INFO] : 2024-07-16 00:08:14.293062   close fd: 18
+
+[INFO] : 2024-07-16 00:08:14.313630   New client:120.229.174.13 connected, port is 15761, sockfd is 18
+
+[INFO] : 2024-07-16 00:08:14.313958   received client request:
+POST /1 HTTP/1.1
+Host: 119.23.69.188:9006
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Content-Length: 0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Cache-Control: max-age=0
+Content-Type: application/x-www-form-urlencoded
+Origin: http://119.23.69.188:9006
+Referer: http://119.23.69.188:9006/
+Upgrade-Insecure-Requests: 1
+
+
+[INFO] : 2024-07-16 00:08:14.326959   close fd: 18
+
+[INFO] : 2024-07-16 00:08:18.366071   New client:120.229.174.13 connected, port is 15769, sockfd is 18
+
+[INFO] : 2024-07-16 00:08:18.366665   received client request:
+POST /2CGISQL.cgi HTTP/1.1
+Host: 119.23.69.188:9006
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Content-Length: 29
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+Cache-Control: max-age=0
+Content-Type: application/x-www-form-urlencoded
+Origin: http://119.23.69.188:9006
+Referer: http://119.23.69.188:9006/1
+Upgrade-Insecure-Requests: 1
+
+user=xiaoming&password=336868
+[INFO] : 2024-07-16 00:08:57.654063   close fd: 18
+

@@ -11,7 +11,7 @@
 
 constexpr int MAX_EVENT_NUMBER = 65536;
 constexpr int MAX_HTTP_CONN_NUM = 65536;
-constexpr unsigned TIME_SLOT = 10;
+constexpr unsigned TIME_SLOT = 30;
 
 class WebServer {
 
