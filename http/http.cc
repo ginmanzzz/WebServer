@@ -511,7 +511,6 @@ bool HttpConn::writeOnce() {
 				return true;
 			}
 			// error write
-			closeConn();
 			fmt::print("write failed\n");
 			unmap();
 			return false;
@@ -535,7 +534,6 @@ bool HttpConn::writeOnce() {
 				return true;
 			}
 			else {
-				closeConn();
 				return false;
 			}
 		}

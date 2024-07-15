@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <assert.h>
+#include <arpa/inet.h>
 
 constexpr Config config = generateConfig();
 
@@ -126,6 +127,8 @@ bool WebServer::dealClientConn() {
 		}
 		HttpConnArr_[static_cast<size_t>(connFd)]->init(connFd, clientAddress, config.root_, config.clientTRIG_,
 													   config.closeLog_, config.user_, config.password_, config.DBName_);
+		LOG_INFO(fmt::format("New client:{} connected, port is {}, sockfd is {}\n", 
+			inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port), connFd));
 		setTimer(clientAddress, connFd);
 	} else {
 		while (1) {
@@ -141,6 +144,8 @@ bool WebServer::dealClientConn() {
 			}
 			HttpConnArr_[static_cast<size_t>(connFd)]->init(connFd, clientAddress, config.root_, config.clientTRIG_,
 													   		config.closeLog_, config.user_, config.password_, config.DBName_);
+			LOG_INFO(fmt::format("New client:{} connected, port is {}, sockfd is {}\n", 
+				inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port), connFd));
 			setTimer(clientAddress, connFd);
 		}
 	}
@@ -153,7 +158,8 @@ void WebServer::dealWithRead(int sockfd) {
 		pThreadPool->append(HttpConnArr_[static_cast<unsigned>(sockfd)], STATE_RW::READ);
 	} else {
 		// proactor
-		HttpConnArr_[static_cast<unsigned>(sockfd)]->readOnce();
+		if (HttpConnArr_[static_cast<unsigned>(sockfd)]->readOnce() == false)
+			dealWithClose(sockfd);
 		pThreadPool->append(HttpConnArr_[static_cast<unsigned>(sockfd)]);
 	}
 }
@@ -164,7 +170,8 @@ void WebServer::dealWithWrite(int sockfd) {
 		pThreadPool->append(HttpConnArr_[static_cast<unsigned>(sockfd)], STATE_RW::WRITE);
 	} else {
 		// proactor
-		HttpConnArr_[static_cast<unsigned>(sockfd)]->writeOnce();
+		if (HttpConnArr_[static_cast<unsigned>(sockfd)]->writeOnce() == false)
+			dealWithClose(sockfd);
 	}
 }
 

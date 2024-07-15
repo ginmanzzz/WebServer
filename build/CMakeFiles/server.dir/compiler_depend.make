@@ -613,8 +613,11 @@ CMakeFiles/server.dir/webserver.cc.o: ../webserver.cc \
   /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
   /usr/include/x86_64-linux-gnu/bits/sigthread.h \
   /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
-  /usr/include/assert.h
+  /usr/include/assert.h \
+  /usr/include/arpa/inet.h
 
+
+/usr/include/arpa/inet.h:
 
 /usr/include/assert.h:
 
