@@ -14,7 +14,7 @@
 
 int HttpConn::epollFd = -1;
 size_t HttpConn::userCount = 0; 
-std::mutex idxMtx;
+std::mutex HttpConn::idxMtx;
 
 const std::string ok200Title = 		"OK";
 const std::string error400Title = 	"Bad Request";
@@ -77,6 +77,7 @@ void addfd(int epollfd, int fd, bool one_shot, TRIGMode mode) {
 
 void removefd(int epollfd, int fd) {
 	epoll_ctl(epollfd, EPOLL_CTL_DEL, fd, 0);
+	LOG_INFO(fmt::format("close fd: {}\n", fd));
 	close(fd);
 }
 
@@ -510,7 +511,6 @@ bool HttpConn::writeOnce() {
 				return true;
 			}
 			// error write
-			closeConn();
 			fmt::print("write failed\n");
 			unmap();
 			return false;
@@ -534,7 +534,6 @@ bool HttpConn::writeOnce() {
 				return true;
 			}
 			else {
-				closeConn();
 				return false;
 			}
 		}

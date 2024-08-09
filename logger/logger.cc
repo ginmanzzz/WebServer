@@ -88,3 +88,7 @@ void Logger::async_write_log() {
 		ofs_.flush();
 	}
 }
+
+void Logger::close() {
+	Log_closed = true;
+}

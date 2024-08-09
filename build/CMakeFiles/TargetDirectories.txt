@@ -13,3 +13,6 @@
 /home/ginman/web/myWebServer/build/http/CMakeFiles/http.dir
 /home/ginman/web/myWebServer/build/http/CMakeFiles/edit_cache.dir
 /home/ginman/web/myWebServer/build/http/CMakeFiles/rebuild_cache.dir
+/home/ginman/web/myWebServer/build/timer/CMakeFiles/timer.dir
+/home/ginman/web/myWebServer/build/timer/CMakeFiles/edit_cache.dir
+/home/ginman/web/myWebServer/build/timer/CMakeFiles/rebuild_cache.dir

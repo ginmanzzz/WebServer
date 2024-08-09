@@ -157,6 +157,9 @@
 		},
 		{
 			"path" : "http/CMakeLists.txt"
+		},
+		{
+			"path" : "timer/CMakeLists.txt"
 		}
 	],
 	"kind" : "cmakeFiles",

@@ -43,7 +43,7 @@ struct Config {
 
 constexpr Config generateConfig() {
 	return Config{	
-		false,    		// close log
+		true,    		// close log
 	 	9006,  			// web port
 		TRIGMode::ET,   // listen socket mode
 		TRIGMode::ET,   // client socket mode
@@ -56,8 +56,8 @@ constexpr Config generateConfig() {
 		3306,           // MYSQL port
 		10,             // MYSQL connectionPool maxConnections
 
-		8,              // threadPool maxConnections
-		10000,          // threadPool maxRequest
+		4,              // threadPool maxConnections
+		20000,          // threadPool maxRequest
 
 		"./",           // log file path
 		500000,         // maxLines in a log file

@@ -10,11 +10,6 @@
   "file": "/home/ginman/web/myWebServer/webserver.cc"
 },
 {
-  "directory": "/home/ginman/web/myWebServer/build",
-  "command": "/usr/bin/g++ -DFMT_LOCALE -DFMT_SHARED -I/home/ginman/web/myWebServer/logger -I/home/ginman/web/myWebServer/threadpool -I/home/ginman/web/myWebServer/http -I/home/ginman/web/myWebServer/timer -I/home/ginman/web/myWebServer -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/server.dir/timer/timer.cc.o -c /home/ginman/web/myWebServer/timer/timer.cc",
-  "file": "/home/ginman/web/myWebServer/timer/timer.cc"
-},
-{
   "directory": "/home/ginman/web/myWebServer/build/logger",
   "command": "/usr/bin/g++ -DFMT_LOCALE -DFMT_SHARED -I/home/ginman/web/myWebServer/logger -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/logger.dir/logger.cc.o -c /home/ginman/web/myWebServer/logger/logger.cc",
   "file": "/home/ginman/web/myWebServer/logger/logger.cc"
@@ -53,5 +48,10 @@
   "directory": "/home/ginman/web/myWebServer/build/http",
   "command": "/usr/bin/g++  -I/home/ginman/web/myWebServer/threadpool -I/home/ginman/web/myWebServer/logger -I/home/ginman/web/myWebServer/http -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/http.dir/http.cc.o -c /home/ginman/web/myWebServer/http/http.cc",
   "file": "/home/ginman/web/myWebServer/http/http.cc"
+},
+{
+  "directory": "/home/ginman/web/myWebServer/build/timer",
+  "command": "/usr/bin/g++  -I/home/ginman/web/myWebServer/timer -I/home/ginman/web/myWebServer/http -I/home/ginman/web/myWebServer/threadpool -g -Wall -Wextra -Werror -pedantic -Wconversion -Wshadow -Wcast-qual -Wcast-align -Wpointer-arith -std=gnu++17 -o CMakeFiles/timer.dir/timer.cc.o -c /home/ginman/web/myWebServer/timer/timer.cc",
+  "file": "/home/ginman/web/myWebServer/timer/timer.cc"
 }
 ]

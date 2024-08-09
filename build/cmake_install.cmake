@@ -47,6 +47,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/ginman/web/myWebServer/build/logger/cmake_install.cmake")
   include("/home/ginman/web/myWebServer/build/threadpool/cmake_install.cmake")
   include("/home/ginman/web/myWebServer/build/http/cmake_install.cmake")
+  include("/home/ginman/web/myWebServer/build/timer/cmake_install.cmake")
 
 endif()
 

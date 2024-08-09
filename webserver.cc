@@ -1,16 +1,20 @@
 #include "webserver.h"
 #include "config.h"
-#include "timer.h"
 
 #include <unistd.h>
 #include <signal.h>
 #include <assert.h>
+#include <arpa/inet.h>
 
 constexpr Config config = generateConfig();
+
+// defind in timer.cc
 extern int pipefd[2];
 
 void WebServer::initLog() {
 	Logger::getInstance()->init(config.path_, config.maxLines_, config.maxQueueSize_);
+	if (config.closeLog_)
+		Logger::getInstance()->close();
 }
 
 void WebServer::initThreadPool() {
@@ -31,6 +35,7 @@ void WebServer::initSQL() {
 void WebServer::initHttpConn() {
 	for (size_t i = 0; i < MAX_HTTP_CONN_NUM; i++) {
 		HttpConnArr_[i] = std::make_shared<HttpConn>();
+		userDataArr_[i] = std::make_shared<ClientData>();
 	}
 }
 
@@ -62,7 +67,7 @@ void WebServer::initPort() {
 		fmt::print("bind socket failed\n");
 		exit(1);
 	}
-	if (listen(listenFd_, 128) < 0) {
+	if (listen(listenFd_, 1024) < 0) {
 		fmt::print("listen socket failed\n");
 		exit(1);
 	}
@@ -90,8 +95,23 @@ void WebServer::initTimer() {
 	addfd(HttpConn::epollFd, pipefd[0], false, TRIGMode::ET);
 	addSignal(SIGALRM, sigHandler, true);
 	addSignal(SIGTERM, sigHandler, true);
+	// set expire function member
+	Timer::pFunc_ = expireFunction;
 	// start the timer
 	alarm(TIME_SLOT);
+}
+
+void WebServer::setTimer(sockaddr_in& addr, int sockfd) {
+	SPtrClientData pd = userDataArr_[static_cast<unsigned>(sockfd)];
+	pd->addr_ = addr;
+	pd->sockfd_ = sockfd;
+	// default timer
+	SPtrTimer pt = std::make_shared<Timer>(pd);
+	pt->userData_ = pd;
+	pd->timer_ = pt;
+	time_t curTime = time(nullptr);
+	pt->expire_ = curTime + 3 * TIME_SLOT;
+	sortTimerList_.addTimer(pt);
 }
 
 bool WebServer::dealClientConn() {
@@ -109,6 +129,9 @@ bool WebServer::dealClientConn() {
 		}
 		HttpConnArr_[static_cast<size_t>(connFd)]->init(connFd, clientAddress, config.root_, config.clientTRIG_,
 													   config.closeLog_, config.user_, config.password_, config.DBName_);
+		LOG_INFO(fmt::format("New client:{} connected, port is {}, sockfd is {}\n", 
+			inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port), connFd));
+		setTimer(clientAddress, connFd);
 	} else {
 		while (1) {
 			int connFd = accept(listenFd_, (struct sockaddr*)&clientAddress, &clientAddressLength);
@@ -123,6 +146,9 @@ bool WebServer::dealClientConn() {
 			}
 			HttpConnArr_[static_cast<size_t>(connFd)]->init(connFd, clientAddress, config.root_, config.clientTRIG_,
 													   		config.closeLog_, config.user_, config.password_, config.DBName_);
+			LOG_INFO(fmt::format("New client:{} connected, port is {}, sockfd is {}\n", 
+				inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port), connFd));
+			setTimer(clientAddress, connFd);
 		}
 	}
 	return true;
@@ -134,7 +160,8 @@ void WebServer::dealWithRead(int sockfd) {
 		pThreadPool->append(HttpConnArr_[static_cast<unsigned>(sockfd)], STATE_RW::READ);
 	} else {
 		// proactor
-		HttpConnArr_[static_cast<unsigned>(sockfd)]->readOnce();
+		if (HttpConnArr_[static_cast<unsigned>(sockfd)]->readOnce() == false)
+			dealWithClose(sockfd);
 		pThreadPool->append(HttpConnArr_[static_cast<unsigned>(sockfd)]);
 	}
 }
@@ -145,7 +172,8 @@ void WebServer::dealWithWrite(int sockfd) {
 		pThreadPool->append(HttpConnArr_[static_cast<unsigned>(sockfd)], STATE_RW::WRITE);
 	} else {
 		// proactor
-		HttpConnArr_[static_cast<unsigned>(sockfd)]->writeOnce();
+		if (HttpConnArr_[static_cast<unsigned>(sockfd)]->writeOnce() == false)
+			dealWithClose(sockfd);
 	}
 }
 
@@ -169,6 +197,13 @@ bool WebServer::dealWithSignal(bool& timeout, bool& stopServer) {
 	return true;
 }
 
+void WebServer::dealWithClose(int sockfd) {
+	auto pTimer = userDataArr_[static_cast<unsigned>(sockfd)]->timer_;
+	// remove fd from epollfd, and close fd
+	pTimer->expireAction();
+	sortTimerList_.deleteTimer(pTimer);
+}
+
 void WebServer::eventLoop() {
 	bool timeout = false;
 	bool stopServer = false;
@@ -190,14 +225,23 @@ void WebServer::eventLoop() {
 			} else if (events_[i].events & EPOLLOUT) {
 				dealWithWrite(sockfd);
 			} else if (events_[i].events & (EPOLLRDHUP | EPOLLHUP | EPOLLERR)) {
-				HttpConnArr_[static_cast<unsigned>(sockfd)]->closeConn();
+				dealWithClose(sockfd);
 			}
 			if (timeout) {
-				// timer handler
+				// timer handler:
+				// remove expired timers
+				sortTimerList_.tick();
 				timeout = false;
+				// restart the alarm
 				alarm(TIME_SLOT);
 			}
 		}
 	}
 }
 
+void expireFunction(SPtrClientData pData) {
+	// equal to http::closeConn
+	removefd(HttpConn::epollFd, pData->sockfd_);
+	std::lock_guard<std::mutex> guard(HttpConn::idxMtx);
+	HttpConn::userCount--;
+}
