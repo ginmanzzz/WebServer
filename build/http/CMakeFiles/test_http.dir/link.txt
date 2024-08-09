@@ -1,1 +1,0 @@
-/usr/bin/g++ -g CMakeFiles/test_http.dir/test_http.cc.o -o test_http  libhttp.a 

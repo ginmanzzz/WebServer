@@ -1,1 +1,0 @@
-/usr/bin/g++ -g CMakeFiles/test_conn.dir/test_conn.cc.o CMakeFiles/test_conn.dir/connectionpool.cc.o -o test_conn  /usr/lib/x86_64-linux-gnu/libmysqlclient.so ../logger/liblogger.a ../http/libhttp.a /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1 -Wl,--as-needed 
