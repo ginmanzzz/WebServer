@@ -61,6 +61,7 @@ public:
 	}
 
 	void init(const std::string& path, size_t max_lines, size_t max_queue_size);
+	void close();
 
 	template<typename T>
 	void write_log(int level, T&& msg);
@@ -123,6 +124,7 @@ void Logger::write_log(int level, T&& msg) {
 		ofs_.flush();
 	}
 }
+
 
 template<typename T>
 void LOG_INFO(T&& msg) {

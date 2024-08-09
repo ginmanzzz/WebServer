@@ -41,6 +41,7 @@ private:
     // Database connections pool
     ConnectionPool::UPtrConnPool& p_connPool;
 
+	// Completed request counter
     std::vector<unsigned> completed_cnt;
 
 private:

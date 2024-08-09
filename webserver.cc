@@ -13,6 +13,8 @@ extern int pipefd[2];
 
 void WebServer::initLog() {
 	Logger::getInstance()->init(config.path_, config.maxLines_, config.maxQueueSize_);
+	if (config.closeLog_)
+		Logger::getInstance()->close();
 }
 
 void WebServer::initThreadPool() {
